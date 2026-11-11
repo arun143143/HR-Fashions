@@ -30,6 +30,7 @@ There is no test framework yet. `npm run lint` and `npm run build` are the only 
   - To add a service, add one entry there. These files are planned to move to Supabase, so keep the object shape stable to keep that swap small.
 - **Environment:** `src/config.js` is the only file that reads `import.meta.env`. To add a setting, put it there and in `.env.example`. Only `VITE_` variables reach the browser, so never put a Supabase service key or any other secret in this app.
 - **Supabase:** `src/lib/supabase.js` exports `null` when the env values are missing, so the site must still render without a database. Guard every use.
+- **Database:** `supabase/` holds migrations, `seed.sql` (generated from `Frontend/src/data` by `supabase/scripts/build-seed.mjs`) and a permission test (`cd supabase/tests && npm install && npm test`). Not applied to a live project yet; see `supabase/README.md`.
 - **Images:** every `<img>` goes through `components/ui/OptimizedImage`. `lib/images.js` builds a `srcset` only for hosts in `RESIZABLE_HOSTS` (Unsplash for now). Only the first-screen image sets `priority`.
 - **Theme:** colours and fonts live only in `tailwind.config.js` (black and antique gold, e.g. `black-950` and `gold-500`) and in `src/styles/index.css` (Tailwind layers and button classes).
 - **Bundle:** `vite.config.js` splits out `react` (react, react-dom, react-router-dom) and `icons` (lucide-react) as manual chunks, so these vendor files stay cached between releases.
