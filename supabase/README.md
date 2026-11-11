@@ -1,6 +1,6 @@
 # Supabase: database, security rules and photo storage
 
-Nothing here has been applied to a live project yet. Create the HR Fashions Supabase project first (so the owner owns it), then apply these files.
+The HR Fashions Supabase project is `pxfylpvxhszpoyqqoaab` (owned by the owner's account; Claude Code reaches it through `.mcp.json`). Nothing here has been applied to it yet. Apply only with the owner's go-ahead.
 
 ## What is in this folder
 
