@@ -95,13 +95,13 @@ r = await as('authenticated', C1, 'select id from public.profiles'); check('cust
 r = await as('authenticated', C1, `update public.profiles set name = 'Priya', phone = '9876543210' where id = '${C1}'`); check('customer updates their own name and phone', !denied(r) && r.affected === 1, JSON.stringify(r));
 r = await as('authenticated', C1, `update public.profiles set role = 'admin' where id = '${C1}'`); check('customer cannot make themselves admin', denied(r), r.error);
 r = await as('authenticated', C1, `update public.profiles set name = 'x' where id = '${C2}'`); check('customer cannot edit another profile', denied(r) || r.affected === 0, JSON.stringify(r));
-r = await as('authenticated', C1, 'select public.is_admin() a'); check('is_admin() is false for a customer', r.rows?.[0].a === false, JSON.stringify(r));
+r = await as('authenticated', C1, 'select private.is_admin() a'); check('is_admin() is false for a customer', r.rows?.[0].a === false, JSON.stringify(r));
 r = await as('authenticated', C1, `insert into public.designs (title, category, image_path) values ('x','y','z')`); check('customer cannot add gallery photos', denied(r), r.error);
 r = await as('authenticated', C1, `insert into storage.objects (bucket_id, name) values ('site-images', 'x.webp')`); check('customer cannot upload photos', denied(r), r.error);
 r = await as('authenticated', C2, 'select count(*)::int n from public.bookings'); check('other customer sees none of customer 1\'s bookings', r.rows?.[0].n === 0, JSON.stringify(r));
 
 // ---- Admin --------------------------------------------------------------------------------
-r = await as('authenticated', ADMIN, 'select public.is_admin() a'); check('is_admin() is true for the admin', r.rows?.[0].a === true, JSON.stringify(r));
+r = await as('authenticated', ADMIN, 'select private.is_admin() a'); check('is_admin() is true for the admin', r.rows?.[0].a === true, JSON.stringify(r));
 r = await as('authenticated', ADMIN, 'select count(*)::int n from public.bookings'); check('admin reads all bookings', r.rows?.[0].n === 2, JSON.stringify(r));
 r = await as('authenticated', ADMIN, `update public.bookings set status = 'contacted'`); check('admin changes booking status', !denied(r) && r.affected === 2, JSON.stringify(r));
 r = await as('authenticated', ADMIN, `update public.bookings set phone = '0000000000'`); check('admin cannot rewrite a customer\'s phone', denied(r), r.error);
