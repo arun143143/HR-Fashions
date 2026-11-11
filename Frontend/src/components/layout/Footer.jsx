@@ -27,7 +27,7 @@ const Footer = () => (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-12 mb-14">
                     <div className="lg:col-span-4">
                         <p className="font-serif text-3xl font-semibold mb-4">{site.name}</p>
-                        <p className="text-black-300 leading-relaxed max-w-xs">{site.tagline}, made to your measurements in Chennai.</p>
+                        <p className="text-black-300 leading-relaxed max-w-xs">Clothes for women and girls, cut to your measurements and fitted on you in Vadapalani, Chennai.</p>
                         {socials.length > 0 && (
                             <div className="flex gap-3 mt-6">
                                 {socials.map(({ name, href, Icon }) => (

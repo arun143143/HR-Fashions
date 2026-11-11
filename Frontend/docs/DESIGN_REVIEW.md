@@ -46,8 +46,8 @@ Two parts of the advice contradict its own goal:
 | What | Where | Fix |
 | --- | --- | --- |
 | Unsplash stock photos | `src/data/services.js`, `src/data/designs.js`, `src/data/site.js`, `src/components/ui/ScrollScene.jsx` | Owner's own photos (action 1) |
-| Stock marketing phrases, for example "Experience the perfect fit…", "Power dressing meets elegance…" | `src/data/services.js` (descriptions) | Rewrite from owner facts (action 2) |
-| Title Case feature lists such as "Premium Interlining" and "Princess Cut & Katori Cut Expertise" | `src/data/services.js` (features) | Sentence case, concrete wording (action 2) |
+| ~~Stock marketing phrases~~ | `src/data/services.js` | Done: rewritten (action 2) |
+| ~~Title Case feature lists~~ | `src/data/services.js` | Done: sentence case, concrete wording |
 | ~~Lucide icons~~ | `src/components/layout/Footer.jsx`, `src/components/layout/Header.jsx`, `src/components/ui/WhatsAppButton.jsx`, `src/pages/Gallery.jsx`, `src/pages/Home.jsx`, `src/pages/ServicePage.jsx` | Done: custom set in `src/components/ui/Icons.jsx` |
 | ~~`framer-motion` installed but not used~~ | `package.json` | Done: removed, with `lucide-react` |
 

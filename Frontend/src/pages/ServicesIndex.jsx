@@ -5,7 +5,7 @@ import useDocumentMeta from '../hooks/useDocumentMeta';
 import { serviceList } from '../data/services';
 
 const ServicesIndex = () => {
-    useDocumentMeta('Our Services', 'Ladies and kids tailoring in Chennai: blouses, lehengas, anarkalis, kurtis, suits and frocks.');
+    useDocumentMeta('What we stitch', 'Tailoring for women and girls in Chennai: blouses, lehengas, anarkalis, kurtis, pant suits and girls’ wear, cut to your measurements.');
     return (
         <div className="bg-black-950 pb-20 md:pb-28">
             <PageIntro title="What we stitch" lead="Choose a garment to see the styles, starting prices and what is included." />

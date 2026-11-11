@@ -7,24 +7,24 @@ import { serviceList } from '../../data/services';
 const TailorChennai = () => (
     <section className="container mx-auto px-6 py-20 md:py-28 grid gap-12 lg:grid-cols-12 lg:gap-16" aria-labelledby="home-tailor">
         <div className="lg:col-span-5">
-            <h2 id="home-tailor" className="section-heading">A ladies and kids tailor in Chennai</h2>
+            <h2 id="home-tailor" className="section-heading">A tailor for women and girls in Vadapalani</h2>
             <div className="stitch max-w-[10rem] mt-7" aria-hidden="true" />
         </div>
 
         <div className="lg:col-span-7 space-y-6 text-lg text-black-200 leading-relaxed max-w-prose">
             <p>
-                HR Fashions stitches clothes for women and girls, and nothing else. That focus means our tailors know
-                the cuts that matter most to you: princess and katori blouses, flared lehengas, floor-length anarkalis
-                and frocks with room for a child to grow.
+                Every outfit we make starts the same way: you, a mirror and a tape measure. HR Fashions stitches only
+                for women and girls, so our days go into the cuts that matter to you: princess and katori blouses,
+                kali lehengas, floor-length anarkalis, and pattu pavadai with room to grow.
             </p>
             <p>
-                You can bring your own fabric and a photo of a design you like, or choose a style from our gallery.
-                We take your measurements, agree the delivery date before we start, and fit the outfit on you before
-                it is finished.
+                Bring the silk saree from your mother&rsquo;s cupboard, the lehenga set for your sister&rsquo;s
+                wedding, or a length of cotton for everyday kurtis. Tell us what you have in mind, or choose a style
+                from our gallery. We measure, agree the price and the date with you, and only then cut.
             </p>
             <p>
-                Our shop is in Vadapalani. Book an appointment online or message us on WhatsApp, and we confirm the
-                time with you there.
+                Half-way through, you try it on. We adjust it until it sits right, then finish the seams. Book online
+                or message us on WhatsApp, and we will fix a time.
             </p>
 
             <nav aria-label="Tailoring services" className="pt-4">

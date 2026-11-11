@@ -74,6 +74,7 @@ let r;
 r = await as('anon', null, 'select count(*)::int n from public.services'); check('visitor reads services', r.rows?.[0].n === 6, JSON.stringify(r));
 r = await as('anon', null, 'select count(*)::int n from public.service_prices'); check('visitor reads prices', r.rows?.[0].n === 24, JSON.stringify(r));
 r = await as('anon', null, 'select count(*)::int n from public.settings'); check('visitor reads settings', r.rows?.[0].n === 9, JSON.stringify(r));
+r = await as('anon', null, 'select count(*) filter (where service_id is null)::int g, count(*) filter (where service_id is not null)::int s from public.faqs'); check('visitor reads general and service FAQs', r.rows?.[0].g === 6 && r.rows?.[0].s === 20, JSON.stringify(r));
 r = await as('anon', null, booking()); check('visitor can send a booking', !denied(r), r.error);
 r = await as('anon', null, 'select * from public.bookings'); check('visitor cannot read bookings', denied(r), JSON.stringify(r).slice(0, 120));
 r = await as('anon', null, booking(`user_id='${C1}'`)); check('visitor cannot book in a customer\'s name', denied(r), r.error);
@@ -114,6 +115,7 @@ r = await as('authenticated', ADMIN, `insert into public.reviews (name, text) va
 // ---- Hidden content stays hidden --------------------------------------------------------
 r = await as('anon', null, 'select count(*)::int n from public.services'); check('hidden service disappears for visitors', r.rows?.[0].n === 5, JSON.stringify(r));
 r = await as('anon', null, `select count(*)::int n from public.service_prices p join public.services s on s.id = p.service_id where s.slug = 'kurti'`); check('hidden service\'s prices disappear too', r.rows?.[0].n === 0, JSON.stringify(r));
+r = await as('anon', null, `select count(*)::int n from public.faqs f join public.services s on s.id = f.service_id where s.slug = 'kurti'`); check('hidden service\'s questions disappear too', r.rows?.[0].n === 0, JSON.stringify(r));
 r = await as('anon', null, 'select count(*)::int n from public.reviews'); check('unapproved review is not public', r.rows?.[0].n === 0, JSON.stringify(r));
 
 // ---- Report -------------------------------------------------------------------------------

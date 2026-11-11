@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { Diamond } from '../components/ui/Icons';
 import OptimizedImage from '../components/ui/OptimizedImage';
+import FaqList from '../components/ui/FaqList';
 import useDocumentMeta from '../hooks/useDocumentMeta';
 import { getService } from '../data/services';
 import { site, whatsappHref } from '../data/site';
@@ -91,14 +92,10 @@ const ServicePage = () => {
 
                     {data.faqs && (
                         <section aria-labelledby="questions">
-                            <h2 id="questions" className={blockHeading}>Questions customers ask</h2>
-                            <ul className="divide-y divide-white/10 border-y border-white/10">
-                                {data.faqs.map((faq) => (
-                                    <li key={faq} className="py-4 text-black-200">{faq}</li>
-                                ))}
-                            </ul>
+                            <h2 id="questions" className={blockHeading}>Questions about {data.name.toLowerCase()}</h2>
+                            <FaqList faqs={data.faqs} />
                             <p className="mt-5 text-black-300">
-                                Have one of these questions?{' '}
+                                Something else to ask?{' '}
                                 <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="text-gold-300 font-bold link-stitch hover:text-white">
                                     Ask us on WhatsApp
                                 </a>

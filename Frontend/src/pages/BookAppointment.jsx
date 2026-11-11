@@ -24,7 +24,7 @@ const labelClass = 'block font-bold text-white mb-2';
 
 // Until bookings are saved in Supabase, the form opens WhatsApp with the details filled in.
 const BookAppointment = () => {
-    useDocumentMeta('Book an Appointment', 'Book a tailoring appointment with HR Fashions in Chennai.');
+    useDocumentMeta('Book an appointment', 'Send HR Fashions a stitching request. It opens in WhatsApp, and we confirm a time for measurements with you there.');
     const [form, setForm] = useState({ name: '', phone: '', service: SERVICE_OPTIONS[0], date: '' });
 
     const update = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }));

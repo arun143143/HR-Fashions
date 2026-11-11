@@ -23,16 +23,23 @@ out.push('begin;');
 out.push('truncate public.service_prices, public.faqs, public.services, public.designs, public.banners, public.settings restart identity cascade;');
 out.push('');
 
-out.push('-- Services, their prices and their page questions');
+out.push('-- Services, their prices and their questions');
+let serviceFaqCount = 0;
 serviceList.forEach((s, i) => {
     out.push(
-        `insert into public.services (slug, name, title, description, hero_image, features, types, tips, questions, sort_order) values (` +
-            [q(s.slug), q(s.name), q(s.title), q(s.description), q(s.heroImg), arr(s.features ?? []), json(s.types ?? []), json(s.tips ?? []), arr(s.faqs ?? []), i + 1].join(', ') +
+        `insert into public.services (slug, name, title, description, hero_image, features, types, tips, sort_order) values (` +
+            [q(s.slug), q(s.name), q(s.title), q(s.description), q(s.heroImg), arr(s.features ?? []), json(s.types ?? []), json(s.tips ?? []), i + 1].join(', ') +
             ');',
     );
     (s.pricing ?? []).forEach((p, j) => {
         out.push(
             `insert into public.service_prices (service_id, label, price_text, sort_order) select id, ${q(p.type)}, ${q(p.price)}, ${j + 1} from public.services where slug = ${q(s.slug)};`,
+        );
+    });
+    (s.faqs ?? []).forEach((f, j) => {
+        serviceFaqCount += 1;
+        out.push(
+            `insert into public.faqs (service_id, question, answer, sort_order) select id, ${q(f.question)}, ${q(f.answer)}, ${j + 1} from public.services where slug = ${q(s.slug)};`,
         );
     });
 });
@@ -73,4 +80,4 @@ out.push('');
 
 const target = fileURLToPath(new URL('../seed.sql', import.meta.url));
 writeFileSync(target, out.join('\n'));
-console.log(`Wrote ${target}: ${serviceList.length} services, ${designList.length} designs, ${generalFaqs.length} general FAQs, ${Object.keys(settings).length} settings.`);
+console.log(`Wrote ${target}: ${serviceList.length} services, ${serviceFaqCount} service FAQs, ${designList.length} designs, ${generalFaqs.length} general FAQs, ${Object.keys(settings).length} settings.`);

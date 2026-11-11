@@ -5,7 +5,7 @@ import { steps } from '../data/process';
 import { whatsappHref } from '../data/site';
 
 const HowItWorks = () => {
-    useDocumentMeta('How It Works', 'How HR Fashions tailoring works, from choosing a design to delivery.');
+    useDocumentMeta('How it works', 'How stitching with HR Fashions works: choose a design, book a visit, get measured, try it on, and collect it on the agreed date.');
     return (
         <div className="bg-black-950 pb-20 md:pb-28">
             <PageIntro title="How it works" lead="From first message to finished outfit in five steps." />

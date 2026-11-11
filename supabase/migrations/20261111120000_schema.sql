@@ -23,7 +23,6 @@ create table public.services (
     features    text[] not null default '{}',
     types       jsonb  not null default '[]'::jsonb,  -- [{ "name": "", "desc": "" }]
     tips        jsonb  not null default '[]'::jsonb,  -- [{ "title": "", "desc": "" }]
-    questions   text[] not null default '{}',         -- the faqs list on each service page (questions only)
     sort_order  integer not null default 0,
     active      boolean not null default true,
     created_at  timestamptz not null default now()
@@ -60,7 +59,8 @@ create table public.banners (
     active      boolean not null default true
 );
 
--- Questions and answers. service_id null = a general question (src/data/faqs.js).
+-- Questions and answers. service_id null = a general question (src/data/faqs.js);
+-- otherwise one of that service's questions (the faqs list in src/data/services.js).
 create table public.faqs (
     id          bigint generated always as identity primary key,
     service_id  bigint references public.services (id) on delete cascade,

@@ -29,8 +29,8 @@ const Hero = () => (
                 </h1>
                 <div className="stitch stitch-draw max-w-md my-8" aria-hidden="true" />
                 <p className="text-lg md:text-xl text-black-100 leading-relaxed max-w-xl">
-                    HR Fashions is a ladies and kids tailor in Chennai. We stitch blouses, lehengas, anarkalis, kurtis,
-                    suits and girls&rsquo; frocks to your measurements.
+                    A tailor for women and girls in Vadapalani, Chennai. Bring your fabric and the design you have in
+                    mind. We measure you, cut to your numbers and fit it on you until it sits right.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 mt-10">
                     <Link to="/book-appointment" className="btn-gold">Book an appointment</Link>

@@ -15,7 +15,7 @@ const lightboxButton =
     'flex h-11 w-11 items-center justify-center border border-gold-500 bg-black-950 text-gold-300 transition-colors hover:bg-gold-500 hover:text-black-950';
 
 const Gallery = () => {
-    useDocumentMeta('Gallery', 'Blouses, lehengas, anarkalis, kurtis and kids wear stitched by HR Fashions in Chennai.');
+    useDocumentMeta('Gallery', 'Blouses, lehengas, anarkalis, kurtis and girls’ wear from the HR Fashions table in Chennai.');
 
     const [category, setCategory] = useState(ALL);
     const [openIndex, setOpenIndex] = useState(null);

@@ -1,21 +1,26 @@
 // General questions shown on the home page. Planned to move to the Supabase faqs table; keep the shape.
-// TODO before launch: the owner confirms every answer, especially the service area.
+// Each answer removes one worry from docs/marketing.md: fit, the date, the price, handing over fabric.
+// TODO before launch: the owner confirms every answer, especially payment and the service area.
 export const generalFaqs = [
     {
         question: 'How do I book?',
-        answer: 'Send a request from the booking page. We confirm the time with you on WhatsApp.',
+        answer: 'Send a request from the booking page, or message us on WhatsApp. We reply to agree a time for measurements.',
     },
     {
-        question: 'Who do you stitch for?',
-        answer: 'Women and girls. Blouses, lehengas, anarkalis, kurtis, suits and kids’ frocks.',
+        question: 'What should I bring?',
+        answer: 'Your fabric, a photo of the design you like, and a piece of clothing that already fits you well if you have one. For long outfits, bring the shoes you will wear.',
     },
     {
-        question: 'Can I bring my own fabric and design?',
-        answer: 'Yes. Bring your fabric and a photo of the design you like, or choose from ours.',
+        question: 'Will it fit?',
+        answer: 'We fit every outfit on you before it is finished and adjust it until it sits right. If something still needs a change after delivery, tell us.',
     },
     {
-        question: 'How do I pay?',
-        answer: 'There is no online payment. You pay in person, by UPI or on delivery.',
+        question: 'When will it be ready?',
+        answer: 'We agree the delivery date with you before we start stitching. For weddings and festivals, book early.',
+    },
+    {
+        question: 'How much will it cost, and how do I pay?',
+        answer: 'Starting prices are on the prices page. We confirm the final price before we start. There is no online payment: you pay in person, by UPI or on delivery.',
     },
     {
         question: 'Which areas do you cover?',

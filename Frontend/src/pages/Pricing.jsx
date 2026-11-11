@@ -4,7 +4,7 @@ import useDocumentMeta from '../hooks/useDocumentMeta';
 import { serviceList } from '../data/services';
 
 const Pricing = () => {
-    useDocumentMeta('Prices', 'Starting prices for blouse, lehenga, anarkali, kurti, suit and kids wear stitching at HR Fashions, Chennai.');
+    useDocumentMeta('Prices', 'Starting stitching prices at HR Fashions, Chennai: blouses, lehengas, anarkalis, kurtis, pant suits and girls’ wear. The final price is confirmed before we start.');
     return (
         <div className="bg-black-950 pb-20 md:pb-28">
             <PageIntro

@@ -1,214 +1,223 @@
 // Service content: the single source of truth for service pages, home tiles and footer links.
-// Later this moves to Supabase (see docs/ARCHITECTURE.md); keep the same shape so the swap is small.
-// Prices and claims here are placeholders: confirm every one before launch.
+// Later this moves to Supabase (see supabase/README.md); keep the same shape so the swap is small.
+// Voice and claim rules: docs/marketing.md.
+//
+// TODO before launch, the owner confirms:
+// - every price (all placeholders)
+// - every FAQ answer that states what the shop does (lining supply, alterations, matching sets)
+// - the Unsplash photos are replaced with the shop's own work
 
 const servicesBySlug = {
     'blouse-stitching': {
         slug: 'blouse-stitching',
-        name: 'Designer Blouse',
-        title: 'Designer Blouse Stitching',
+        name: 'Blouses',
+        title: 'Blouse stitching in Chennai',
         heroImg: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80&w=2000',
-        description: 'Experience the perfect fit with our bespoke blouse stitching service. Whether it is a simple cotton blouse or a heavy bridal design, our master tailors handle every detail with precision. We ensure proper lining, padding, and finishing to give you a boutique look at home.',
+        description:
+            'A saree is only as good as the blouse under it. We cut every blouse to your measurements, line it properly and fit it on you, so it sits flat at the back, holds at the shoulder and still lets you lift your arms.\n\nBring your saree and a photo of the design you like: simple cotton blouses for every day, lined silk blouses for functions, and maggam work for weddings.',
         features: [
-            'Princess Cut & Katori Cut Expertise',
-            'High-Quality Lining & Piping',
-            'Sweat Pads & Bra Straps Included',
-            'Custom Embroidery'
+            'Princess cut and katori cut',
+            'Lining and piping in a matching shade',
+            'Padding and hooks placed for your fit',
+            'Maggam and aari embroidery on request',
         ],
         types: [
-            { name: 'Princess Cut Blouse', desc: 'Designed for a sleek fit, enhancing body contours without seams at the bust point.' },
-            { name: 'Katori Cut Blouse', desc: 'Traditional style with a specific bust cup cut, ideal for perfect support and fitting.' },
-            { name: 'Backless / Deep Neck', desc: 'Trendy designs with tassels and dori for a glamorous look.' },
-            { name: 'Bridal Embroidery', desc: 'Heavy maggam work and zardosi detailing for wedding trousseaus.' }
+            { name: 'Princess cut', desc: 'Seams run over the bust instead of darts, so the blouse follows your shape closely. Good for silk and brocade.' },
+            { name: 'Katori cut', desc: 'A cup-shaped panel under the bust gives shape and support without padding. A classic for silk sarees.' },
+            { name: 'Back and neck designs', desc: 'Deep backs, boat necks, collars and dori ties with tassels. Bring a photo and we will work out what suits the saree.' },
+            { name: 'Bridal maggam work', desc: 'Hand embroidery with zari, stones and beads, planned with you around the saree border.' },
         ],
         tips: [
-            { title: 'Choosing the Right Fabric', desc: 'Silk and brocade hold shape well for heavy embroidery, while chiffon needs good lining.' },
-            { title: 'Neckline Matters', desc: 'Select a neckline that complements your jewelry and face shape.' },
-            { title: 'Sleeve Length', desc: 'Elbow-length sleeves are trending and add elegance to Kanjeevarams.' }
+            { title: 'Bring the saree to the fitting', desc: 'We match the lining, the piping and the sleeve length to the border.' },
+            { title: 'Choose the neckline with your jewellery', desc: 'A heavy necklace sits best on a round or boat neck. A long chain suits a deeper front.' },
+            { title: 'Decide the sleeve length early', desc: 'Elbow-length sleeves need more fabric than short ones. Tell us before we cut.' },
         ],
         faqs: [
-            'Do you provide lining fabric?',
-            'Can you replicate a celebrity design?',
-            'How to measure cup size correctly?',
-            'What is the turnaround time for bridal blouses?'
+            { question: 'Do you supply the lining?', answer: 'Yes. We can supply lining in a matching shade, or use your own. Tell us at the fitting.' },
+            { question: 'Can you copy a design from a photo?', answer: 'Yes. Send the photo on WhatsApp. If your fabric cannot hold that design, we will tell you before we cut.' },
+            { question: 'Can you stitch from a blouse that already fits me?', answer: 'Yes. Bring a blouse that fits you well. We take measurements from it as well as from you.' },
+            { question: 'How long does a bridal blouse take?', answer: 'It depends on the embroidery. We agree the delivery date with you before we start. For a wedding, book a few weeks ahead.' },
         ],
         pricing: [
-            { type: 'Simple Blouse', price: '₹980' },
-            { type: 'Lining Blouse', price: '₹1280' },
-            { type: 'Padded Blouse', price: '₹1580' },
-            { type: 'Bridal Maggam Work', price: '₹3500+' }
-        ]
+            { type: 'Simple blouse', price: '₹980' },
+            { type: 'Lined blouse', price: '₹1280' },
+            { type: 'Padded blouse', price: '₹1580' },
+            { type: 'Bridal maggam work', price: 'From ₹3500' },
+        ],
     },
     'lehenga-choli': {
         slug: 'lehenga-choli',
-        name: 'Lehenga Choli',
-        title: 'Best Lehenga Tailor In Chennai',
+        name: 'Lehengas',
+        title: 'Lehenga stitching in Chennai',
         heroImg: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&q=80&w=2000',
-        description: 'HRFashions is best known for its Lehenga stitching service. Our Chennai store has a wide range of perfect lehengas for weddings, parties, and more. We believe that our clients deserve only the best quality of work, and we ensure they receive just that by providing precision stitching with an eye for detail in every single garment we make.\n\nNo matter the complexity of your design, you can rest assured that we will do it right the first time and use only high-quality fabrics and accessories to bring your vision to life.',
+        description:
+            'A lehenga has to look right when you stand still and when you dance. We set the flare, the waistband and the length to your measurements and your heels, then fit it on you before we finish the hem.\n\nBridal lehengas, reception and party lehengas, and lighter ones for functions, stitched from your fabric or from a set you have bought.',
         features: [
-            'Full Transparency & Policies',
-            '35 Years of Experience',
-            'Live Call & Chat Support',
-            'Door Step Measurement & Delivery'
+            'Kali and umbrella cuts',
+            'Can-can and lining for volume',
+            'Waist and length set with your heels on',
+            'Choli and dupatta finished to match',
         ],
         types: [
-            { name: 'Kanchli Nalki Style', desc: 'A beautiful hand-woven pleated skirt from India, often made from cotton, silk, or georgette with colorful border embroidery.' },
-            { name: 'Jari Embroidery Style', desc: 'Traditional style where light-colored threads are meticulously stitched into dark-colored fabric to create symmetrical floral motifs.' },
-            { name: 'Banarsi Style', desc: 'A classic style that drapes the body like a second skin. Often made from velvet and adorned with jeweled appliqués or sequins.' },
-            { name: 'Banjara Style', desc: 'Popular for intricate embroidery and unique patterns influenced by folk art. Heavily decorated with beadwork and embroidery.' }
+            { name: 'Kalidar', desc: 'Made from many tapered panels, so it flares evenly all round. Good for heavy fabric and borders.' },
+            { name: 'Umbrella cut', desc: 'Cut as a circle for a soft, swinging flare. Good for georgette and chiffon.' },
+            { name: 'A-line', desc: 'Fitted at the waist and gently flared. Easy to wear through a long function.' },
+            { name: 'Bridal', desc: 'Heavy fabric, can-can layers and a structured choli, planned around the border and the embroidery.' },
         ],
         tips: [
-            { title: 'Start With Comfort', desc: 'Make sure that you can stand or sit comfortably. The lehenga choli should not be too tight or too loose.' },
-            { title: 'Invest In Fabrics', desc: 'Different fabrics suit different body types. Consult with our tailors to choose the perfect fabric for your silhouette.' },
-            { title: 'Simple Silhouettes', desc: 'Opting for something simple that flatters your body will always be the best choice over following fleeting trends.' },
-            { title: 'Local Weaves', desc: 'Consider beautiful Indian weaves like patola or banarasi which retain their natural sheen without needing ironing.' }
+            { title: 'Wear your heels to the fitting', desc: 'We set the hem with the footwear you will wear on the day.' },
+            { title: 'Tell us how long you will wear it', desc: 'For a long wedding day we keep the waist comfortable and the skirt as light as the fabric allows.' },
+            { title: 'Check the fabric length first', desc: 'Flared cuts need more fabric. Bring the full set and we will tell you what it allows.' },
         ],
         faqs: [
-            'How Much Does It Cost To Stitch A Lehenga?',
-            'How Long Does It Take To Stitch A Lehenga?',
-            'What Is Umbrella Cut Lehenga?',
-            'How Much Cloth Is Needed For A Lehenga?',
-            'Which Type of Lehenga Is Best?'
+            { question: 'How much does lehenga stitching cost?', answer: 'See the starting prices on this page. The final price depends on the cut, the lining and any work, and we confirm it before we start.' },
+            { question: 'How long does a lehenga take?', answer: 'We agree the date with you before we start. For a wedding, book early, especially in the wedding season.' },
+            { question: 'What is the difference between kali and umbrella cut?', answer: 'A kali lehenga is made of many tapered panels and holds a heavy border well. An umbrella cut is one circle of fabric and swings more softly.' },
+            { question: 'How much fabric do I need?', answer: 'It depends on the cut and your height. Send us a photo of the fabric and its length on WhatsApp and we will tell you.' },
         ],
         pricing: [
-            { type: 'Standard Lehenga Stitching', price: '₹2500' },
-            { type: 'Designer Lehenga', price: '₹4500' },
-            { type: 'Bridal Lehenga (Heavy)', price: '₹8500' },
-            { type: 'Kali Lehenga', price: '₹3500' }
-        ]
+            { type: 'Lehenga stitching', price: '₹2500' },
+            { type: 'Kali lehenga', price: '₹3500' },
+            { type: 'Designer lehenga', price: '₹4500' },
+            { type: 'Bridal lehenga', price: '₹8500' },
+        ],
     },
     'anarkali': {
         slug: 'anarkali',
-        name: 'Anarkali',
-        title: 'Royal Anarkali Suits',
+        name: 'Anarkalis',
+        title: 'Anarkali stitching in Chennai',
         heroImg: 'https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&q=80&w=2000',
-        description: 'The Anarkali suit allows women to keep a sense of heritage while embracing modern aesthetics. From floor-length gowns to asymmetrical cuts, we craft Anarkalis that make you look regal. Our tailors are experts in handling the volume of fabric and creating the perfect flare (gher) that spins with you.',
+        description:
+            'An anarkali is all about the flare: how it falls when you stand and how it moves when you walk. We work out the panels for your height and your fabric, and fit the bodice on you before the skirt is joined.\n\nFloor-length gowns for receptions, knee-length anarkalis for festivals, and simpler ones for everyday functions.',
         features: [
-            'Perfect Flare (Gher) Calculation',
-            'Kalidar & Umbrella Cuts',
-            'Heavy Border Attachment',
-            'Canvas & Can-Can Layering'
+            'Flare planned for your height',
+            'Kalidar and umbrella cuts',
+            'Borders and lace set evenly',
+            'A can-can layer when you want more volume',
         ],
         types: [
-            { name: 'Floor Length Anarkali', desc: 'Gown-style suits that add height and elegance, perfect for evening receptions.' },
-            { name: 'Angrakha Style', desc: 'Overlapping neckline tied with tassels, inspired by Mughal royalty.' },
-            { name: 'Cape Style Anarkali', desc: 'Modern fusion style with a detached or attached cape, replacing the dupatta.' }
+            { name: 'Floor-length', desc: 'A gown-style anarkali that reaches the floor, measured with the heels you will wear.' },
+            { name: 'Angrakha', desc: 'An overlapping front tied at the side, with or without tassels.' },
+            { name: 'Cape style', desc: 'A sheer cape over the anarkali in place of a dupatta.' },
         ],
         tips: [
-            { title: 'Fabric Flow', desc: 'Georgette and Chiffon are best for a flowy flare, while Silk gives a structured royal look.' },
-            { title: 'Length Check', desc: 'Always wear your intended heels while measuring for floor-length Anarkalis.' }
+            { title: 'Flow or structure', desc: 'Georgette and chiffon fall softly. Silk holds its shape and looks more formal.' },
+            { title: 'Measure in your heels', desc: 'For a floor-length anarkali we set the length with your footwear on.' },
         ],
         faqs: [
-            'Can you convert a saree into an Anarkali?',
-            'Do you add can-can for volume?',
-            'How much fabric is needed for a full flare?'
+            { question: 'Can you make an anarkali from a saree?', answer: 'Often, yes. It depends on the length of the saree and where the border falls. Bring it and we will tell you what is possible.' },
+            { question: 'Do you add can-can?', answer: 'Yes, if you want more volume. We can show you the difference at the fitting.' },
+            { question: 'How much fabric do I need for a full flare?', answer: 'It depends on your height and the number of panels. Send us a photo of the fabric and its length on WhatsApp.' },
         ],
         pricing: [
-            { type: 'Basic Anarkali', price: '₹2200' },
-            { type: 'Kalidar Anarkali', price: '₹2800' },
-            { type: 'Party Wear Gown', price: '₹3500' },
-            { type: 'Heavy Bridal Anarkali', price: '₹5500' }
-        ]
+            { type: 'Simple anarkali', price: '₹2200' },
+            { type: 'Kalidar anarkali', price: '₹2800' },
+            { type: 'Party gown', price: '₹3500' },
+            { type: 'Bridal anarkali', price: '₹5500' },
+        ],
     },
     'kids-frock': {
         slug: 'kids-frock',
-        name: 'Kids Frock',
-        title: 'Custom Kids Wear',
+        name: 'Girls’ wear',
+        title: 'Frocks and festive wear for girls',
         heroImg: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&q=80&w=2000',
-        description: 'Dress your little ones in comfort and style. From birthday frocks to festive lehengas, we stitch soft, skin-friendly garments with playful designs. We ensure extra margin for growth and durable stitching for active kids.',
+        description:
+            'Children grow fast and never sit still, so we stitch for both. Soft lining wherever the fabric touches skin, no scratchy work at the neck or underarms, and extra margin inside the seams so the dress can be let out later.\n\nBirthday frocks, pattu pavadai for festivals, and lehenga and sharara sets, stitched to your daughter’s measurements.',
         features: [
-            'Skin-Friendly Fabrics',
-            'Comfortable Linings',
-            'Growth Margins Included',
-            'Custom Embroidery'
+            'Soft lining against the skin',
+            'No heavy work at the neck or underarms',
+            'Extra seam margin to let out later',
+            'Matching outfits for mother and daughter',
         ],
         types: [
-            { name: 'Party Frocks', desc: 'Fluffy net or satin frocks with bows and flower embellishments.' },
-            { name: 'Ethnic Lehengas', desc: 'Miniature lehengas for festivals, lightweight and easy to carry.' },
-            { name: 'Sharara Sets', desc: 'Trendy and comfortable sharara sets for little fashionistas.' }
+            { name: 'Party frocks', desc: 'Net or satin frocks with layers, bows and flowers, lined so they do not scratch.' },
+            { name: 'Pattu pavadai', desc: 'The traditional silk skirt and blouse for festivals and functions, with the border placed to show.' },
+            { name: 'Lehenga and sharara sets', desc: 'Light, easy-to-move-in sets for weddings and family functions.' },
         ],
         tips: [
-            { title: 'Comfort First', desc: 'Avoid prick, heavy embroidery near the neck and underarms.' },
-            { title: 'Size Up', desc: 'Kids grow fast; we always leave 2 inches of extra margin inside.' }
+            { title: 'Comfort first', desc: 'Keep heavy embroidery away from the neck and underarms, where children feel it most.' },
+            { title: 'Leave room to grow', desc: 'We keep extra margin in the seams so the dress can be let out as she grows.' },
         ],
         faqs: [
-            'Do you stitch mother-daughter matching outfits?',
-            'What fabrics are best for sensitive skin?',
-            'Do you make costumes for school functions?'
+            { question: 'Do you stitch matching mother and daughter outfits?', answer: 'Yes. Bring enough fabric for both and we will stitch them as a set.' },
+            { question: 'Which fabrics are best for sensitive skin?', answer: 'Cotton and soft linings are the gentlest. For silk or net, we line every part that touches the skin.' },
+            { question: 'Can you stitch a costume for a school function?', answer: 'Tell us what you need and the date on WhatsApp. If we can do it well in that time, we will say yes.' },
         ],
         pricing: [
-            { type: 'Simple Frock', price: '₹650' },
-            { type: 'Party Wear Gown', price: '₹1200' },
-            { type: 'Kids Lehenga', price: '₹1500' },
-            { type: 'School Uniform', price: '₹450' }
-        ]
+            { type: 'Simple frock', price: '₹650' },
+            { type: 'Party frock', price: '₹1200' },
+            { type: 'Pattu pavadai or lehenga set', price: '₹1500' },
+            { type: 'School uniform', price: '₹450' },
+        ],
     },
     'kurti': {
         slug: 'kurti',
-        name: 'Kurti',
-        title: 'Daily & Office Wear Kurtis',
+        name: 'Kurtis',
+        title: 'Kurti stitching for daily and office wear',
         heroImg: 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&q=80&w=2000',
-        description: 'Stay comfortable and chic with our custom-stitched Kurtis. Whether for office wear, casual outings, or small gatherings, we offer a variety of cuts and fits. Our tailors ensure the perfect shoulder drop and armhole fit that readymade brands often miss.',
+        description:
+            'A readymade kurti fits nobody exactly: the shoulder slips, the armhole pulls, or the length is wrong. We stitch kurtis to your measurements, so the clothes you wear most often are the ones that fit best.\n\nStraight, A-line and anarkali kurtis, with pants, palazzos or a salwar to match.',
         features: [
-            'A-Line, Straight & High-Low Cuts',
-            'Pocket Additions',
-            'Office-Appropriate Necklines',
-            'Perfect Shoulder Fitting'
+            'Straight, A-line and high-low cuts',
+            'Pockets on request',
+            'Necklines that work for the office',
+            'Shoulder and armhole cut to fit',
         ],
         types: [
-            { name: 'Straight Cut', desc: 'Professional and sleek, pairs perfectly with leggings or trousers.' },
-            { name: 'Anarkali Kurti', desc: 'Flared and flowy, suitable for semi-casual events.' },
-            { name: 'Kaftan Style', desc: 'Loose and breezy, perfect for summer comfort.' }
+            { name: 'Straight cut', desc: 'Clean and simple. Goes with leggings, pants or trousers.' },
+            { name: 'Anarkali kurti', desc: 'Flared from the waist, for functions and festive days.' },
+            { name: 'Kaftan style', desc: 'Loose and airy, for the hottest days of the year.' },
         ],
         tips: [
-            { title: 'Choose Cotton', desc: 'For daily wear, pure cotton or linen is most breathable.' },
-            { title: 'Mix & Match', desc: 'Neutral kurtis can be paired with multiple colored dupattas.' }
+            { title: 'Choose cotton for every day', desc: 'Pure cotton and linen breathe best in the Chennai heat.' },
+            { title: 'Plan one set of colours', desc: 'A few kurtis in plain colours go with many dupattas and pants.' },
         ],
         faqs: [
-            'Do you stitch pants with pockets?',
-            'Can you alter readymade kurtis?',
-            'What is the price for bulk stitching?'
+            { question: 'Can you add pockets?', answer: 'Yes, in the side seams of the kurti or in the pants. Ask at the fitting.' },
+            { question: 'Do you alter readymade kurtis?', answer: 'Yes. We can change the length, take in the sides, shorten the sleeves or fix the shoulders.' },
+            { question: 'Can I give several kurtis at once?', answer: 'Yes. Bring all the fabrics together and we will agree one delivery date for the whole set.' },
         ],
         pricing: [
-            { type: 'Simple Cotton Kurti', price: '₹450' },
-            { type: 'Lining Kurti', price: '₹650' },
-            { type: 'Designer Kurti', price: '₹950' },
-            { type: 'Kurti with Pant Set', price: '₹950' }
-        ]
+            { type: 'Simple cotton kurti', price: '₹450' },
+            { type: 'Lined kurti', price: '₹650' },
+            { type: 'Designer kurti', price: '₹950' },
+            { type: 'Kurti with pants', price: '₹950' },
+        ],
     },
     'suit-pant': {
         slug: 'suit-pant',
-        name: 'Suit Pant',
-        title: 'Ladies Suit Pant Sets',
+        name: 'Pant suits',
+        title: 'Pant suits and trousers for women',
         heroImg: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&q=80&w=2000',
-        description: 'Power dressing meets elegance. Our bespoke ladies pant suits are tailored to give you a sharp, professional silhouette. From formal office wear to chic evening tuxedos, we handle structured tailoring with expertise.',
+        description:
+            'A suit has nowhere to hide a poor fit. We cut the trousers for your waist, your hips and the shoes you will wear, and shape the blazer to your shoulders, so it looks sharp without feeling tight.\n\nFormal suits for work, cigarette pants and wide-leg trousers, and blazers on their own.',
         features: [
-            'Perfect Trouser Fit',
-            'Structured Blazers',
-            'Premium Interlining',
-            'Comfort Waistbands'
+            'Trousers cut for your shoes',
+            'Blazers shaped at the shoulder',
+            'Interlining for structure',
+            'A waistband that stays comfortable when you sit',
         ],
         types: [
-            { name: 'Formal Office Suit', desc: 'Straight cut trousers with a single-breasted blazer.' },
-            { name: 'Cigarette Pants', desc: 'Slim-fit trousers ending at the ankle, very trendy.' },
-            { name: 'Wide Leg Sets', desc: 'Comfortable and stylish, perfect for summer formals.' }
+            { name: 'Office suit', desc: 'Straight trousers with a single-breasted blazer.' },
+            { name: 'Cigarette pants', desc: 'Slim trousers that end at the ankle.' },
+            { name: 'Wide-leg sets', desc: 'Loose trousers that move well in the heat, with a matching top or blazer.' },
         ],
         tips: [
-            { title: 'Fabric Choice', desc: 'Wool blends or heavy ceremonial fabrics drapes best for suits.' },
-            { title: 'Heel Height', desc: 'Decide your footwear height before finalizing trouser length.' }
+            { title: 'Choose a fabric with some weight', desc: 'Wool blends and suiting fabrics hold a crease and fall better than thin cotton.' },
+            { title: 'Decide your heel height first', desc: 'We set the trouser length with the shoes you will wear most.' },
         ],
         faqs: [
-            'Do you stitch blazers for women?',
-            'How to measure inseam length?',
-            'Is lining required for white trousers?'
+            { question: 'Do you stitch blazers for women?', answer: 'Yes, lined or unlined. See the starting prices on this page.' },
+            { question: 'How do you set the trouser length?', answer: 'With the shoes you plan to wear. Bring them to the fitting.' },
+            { question: 'Do white trousers need lining?', answer: 'Usually yes, so they are not see-through. We will check your fabric against the light.' },
         ],
         pricing: [
-            { type: 'Trouser Stitching', price: '₹650' },
-            { type: 'Blazer (Unlined)', price: '₹1800' },
-            { type: 'Full Suit Set', price: '₹2800' },
-            { type: 'Vest / Waistcoat', price: '₹1200' }
-        ]
-    }
+            { type: 'Trousers', price: '₹650' },
+            { type: 'Waistcoat', price: '₹1200' },
+            { type: 'Blazer, unlined', price: '₹1800' },
+            { type: 'Full suit', price: '₹2800' },
+        ],
+    },
 };
 
 export const serviceList = Object.values(servicesBySlug);

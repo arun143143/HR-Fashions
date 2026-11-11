@@ -3,7 +3,7 @@
 export const site = {
     name: 'HR Fashions',
     brandMark: 'HRFASHIONS',
-    tagline: 'Bespoke tailoring for women and girls',
+    tagline: 'Tailoring for women and girls in Chennai',
     phone: '+91 882-646-6345',
     phoneHref: 'tel:+918826466345',
     whatsappNumber: '918826466345',
