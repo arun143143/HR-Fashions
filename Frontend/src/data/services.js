@@ -7,7 +7,7 @@ const servicesBySlug = {
         slug: 'blouse-stitching',
         name: 'Designer Blouse',
         title: 'Designer Blouse Stitching',
-        heroImg: 'https://images.unsplash.com/photo-1629872430082-93d891271f4f?auto=format&fit=crop&q=80&w=2000',
+        heroImg: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80&w=2000',
         description: 'Experience the perfect fit with our bespoke blouse stitching service. Whether it is a simple cotton blouse or a heavy bridal design, our master tailors handle every detail with precision. We ensure proper lining, padding, and finishing to give you a boutique look at home.',
         features: [
             'Princess Cut & Katori Cut Expertise',
@@ -81,7 +81,7 @@ const servicesBySlug = {
         slug: 'anarkali',
         name: 'Anarkali',
         title: 'Royal Anarkali Suits',
-        heroImg: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&q=80&w=2000',
+        heroImg: 'https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&q=80&w=2000',
         description: 'The Anarkali suit allows women to keep a sense of heritage while embracing modern aesthetics. From floor-length gowns to asymmetrical cuts, we craft Anarkalis that make you look regal. Our tailors are experts in handling the volume of fabric and creating the perfect flare (gher) that spins with you.',
         features: [
             'Perfect Flare (Gher) Calculation',
@@ -114,7 +114,7 @@ const servicesBySlug = {
         slug: 'kids-frock',
         name: 'Kids Frock',
         title: 'Custom Kids Wear',
-        heroImg: 'https://images.unsplash.com/photo-1621452773781-0f992ee61c67?auto=format&fit=crop&q=80&w=2000',
+        heroImg: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&q=80&w=2000',
         description: 'Dress your little ones in comfort and style. From birthday frocks to festive lehengas, we stitch soft, skin-friendly garments with playful designs. We ensure extra margin for growth and durable stitching for active kids.',
         features: [
             'Skin-Friendly Fabrics',
@@ -147,7 +147,7 @@ const servicesBySlug = {
         slug: 'kurti',
         name: 'Kurti',
         title: 'Daily & Office Wear Kurtis',
-        heroImg: 'https://images.unsplash.com/photo-1616423668352-ecc6b3061699?auto=format&fit=crop&q=80&w=2000',
+        heroImg: 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&q=80&w=2000',
         description: 'Stay comfortable and chic with our custom-stitched Kurtis. Whether for office wear, casual outings, or small gatherings, we offer a variety of cuts and fits. Our tailors ensure the perfect shoulder drop and armhole fit that readymade brands often miss.',
         features: [
             'A-Line, Straight & High-Low Cuts',

@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import ScrollToTop from './ScrollToTop';
+import WhatsAppButton from '../ui/WhatsAppButton';
 import ErrorBoundary from '../ui/ErrorBoundary';
 
 const PageLoader = () => (
@@ -23,6 +24,7 @@ const Layout = () => (
             </ErrorBoundary>
         </main>
         <Footer />
+        <WhatsAppButton />
     </div>
 );
 

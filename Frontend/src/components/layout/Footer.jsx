@@ -5,6 +5,7 @@ import { serviceList } from '../../data/services';
 
 const quickLinks = [
     { name: 'All services', path: '/services' },
+    { name: 'Gallery', path: '/gallery' },
     { name: 'How it works', path: '/how-it-works' },
     { name: 'Book an appointment', path: '/book-appointment' },
 ];

@@ -4,8 +4,8 @@ import { Menu, X, Phone } from 'lucide-react';
 import { site } from '../../data/site';
 
 const navLinks = [
-    { name: 'Home', path: '/', end: true },
     { name: 'Services', path: '/services', end: true },
+    { name: 'Gallery', path: '/gallery' },
     { name: 'Kids wear', path: '/services/kids-frock' },
     { name: 'How it works', path: '/how-it-works' },
 ];

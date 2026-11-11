@@ -21,6 +21,8 @@ export default {
                     900: '#141414',
                     950: '#0a0a0a', // Main Background
                 },
+                // Used only on the floating WhatsApp button
+                whatsapp: '#1F7A4D',
                 // Antique Gold - Luxury Accents
                 gold: {
                     50: '#fbf7eb',
