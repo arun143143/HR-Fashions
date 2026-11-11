@@ -7,6 +7,7 @@ import Home from '../pages/Home';
 const ServicesIndex = lazy(() => import('../pages/ServicesIndex'));
 const ServicePage = lazy(() => import('../pages/ServicePage'));
 const Gallery = lazy(() => import('../pages/Gallery'));
+const Pricing = lazy(() => import('../pages/Pricing'));
 const HowItWorks = lazy(() => import('../pages/HowItWorks'));
 const BookAppointment = lazy(() => import('../pages/BookAppointment'));
 const NotFound = lazy(() => import('../pages/NotFound'));
@@ -19,6 +20,7 @@ const App = () => (
                 <Route path="/services" element={<ServicesIndex />} />
                 <Route path="/services/:slug" element={<ServicePage />} />
                 <Route path="/gallery" element={<Gallery />} />
+                <Route path="/pricing" element={<Pricing />} />
                 <Route path="/how-it-works" element={<HowItWorks />} />
                 <Route path="/book-appointment" element={<BookAppointment />} />
                 <Route path="*" element={<NotFound />} />

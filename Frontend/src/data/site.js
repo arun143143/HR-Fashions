@@ -11,7 +11,7 @@ export const site = {
     address: '16/95, Ottagapalayam, Sector 15, Vadapalani, Chennai, Tamil Nadu 600078',
     deliveryNote: 'Free pickup & delivery within Chennai.',
     heroImage:
-        'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&q=75&w=2000',
+        'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&q=75&w=2000',
     // Leave hours empty until the owner confirms them; the footer hides the line when empty.
     hours: '',
     social: { instagram: '', facebook: '' },

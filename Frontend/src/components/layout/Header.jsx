@@ -1,17 +1,68 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, ChevronDown } from 'lucide-react';
 import { site } from '../../data/site';
+import { serviceList } from '../../data/services';
 
 const navLinks = [
-    { name: 'Services', path: '/services', end: true },
     { name: 'Gallery', path: '/gallery' },
-    { name: 'Kids wear', path: '/services/kids-frock' },
+    { name: 'Prices', path: '/pricing' },
     { name: 'How it works', path: '/how-it-works' },
 ];
 
-const linkClass = ({ isActive }) =>
-    `text-[15px] font-bold transition-colors hover:text-gold-300 ${isActive ? 'text-gold-300' : 'text-white/85'}`;
+const linkBase = 'text-[15px] font-bold transition-colors hover:text-gold-300';
+const linkClass = ({ isActive }) => `${linkBase} ${isActive ? 'text-gold-300' : 'text-white'}`;
+const mobileLinkClass = ({ isActive }) =>
+    `text-lg font-bold border-b border-white/10 py-4 block hover:text-gold-300 ${isActive ? 'text-gold-300' : 'text-white'}`;
+
+// Desktop dropdown listing every service. Opens on hover, click or keyboard; closes on Escape or when focus leaves.
+const ServicesMenu = ({ pathname }) => {
+    const [open, setOpen] = useState(false);
+    const wrap = useRef(null);
+    const active = pathname.startsWith('/services');
+
+    useEffect(() => setOpen(false), [pathname]);
+
+    return (
+        <div
+            ref={wrap}
+            className="relative"
+            onMouseEnter={() => setOpen(true)}
+            onMouseLeave={() => setOpen(false)}
+            onBlur={(e) => !wrap.current.contains(e.relatedTarget) && setOpen(false)}
+            onKeyDown={(e) => e.key === 'Escape' && setOpen(false)}
+        >
+            <button
+                type="button"
+                aria-expanded={open}
+                aria-controls="services-menu"
+                onClick={() => setOpen((o) => !o)}
+                className={`${linkBase} flex items-center gap-1 ${active ? 'text-gold-300' : 'text-white'}`}
+            >
+                Services
+                <ChevronDown size={16} className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`} aria-hidden="true" />
+            </button>
+            {open && (
+                <div id="services-menu" className="absolute left-0 top-full w-64 pt-4">
+                    <ul className="border border-gold-500/50 bg-black-950 py-2">
+                        {serviceList.map((s) => (
+                            <li key={s.slug}>
+                                <Link to={`/services/${s.slug}`} className="block px-5 py-2.5 text-white hover:bg-black-900 hover:text-gold-300 transition-colors">
+                                    {s.name}
+                                </Link>
+                            </li>
+                        ))}
+                        <li className="mt-2 border-t border-white/10 pt-2">
+                            <Link to="/services" className="block px-5 py-2.5 font-bold text-gold-300 hover:bg-black-900 transition-colors">
+                                All services
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            )}
+        </div>
+    );
+};
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -30,7 +81,7 @@ const Header = () => {
 
     return (
         <header
-            className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${scrolled || isMenuOpen ? 'bg-black-950/95 backdrop-blur-md border-gold-500/30 py-3' : 'bg-black-950 border-transparent py-5'}`}
+            className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${scrolled || isMenuOpen ? 'bg-black-950/95 backdrop-blur-md border-gold-500/30 py-3' : 'bg-gradient-to-b from-black-950/80 to-transparent border-transparent py-5'}`}
         >
             <div className="container mx-auto px-6 flex justify-between items-center">
                 <Link to="/" className="font-serif text-2xl md:text-[1.75rem] font-semibold tracking-tight text-white" aria-label={`${site.name} home`}>
@@ -38,8 +89,9 @@ const Header = () => {
                 </Link>
 
                 <nav className="hidden lg:flex items-center gap-8" aria-label="Main">
+                    <ServicesMenu pathname={pathname} />
                     {navLinks.map((link) => (
-                        <NavLink key={link.name} to={link.path} end={link.end} className={linkClass}>
+                        <NavLink key={link.name} to={link.path} className={linkClass}>
                             {link.name}
                         </NavLink>
                     ))}
@@ -65,16 +117,19 @@ const Header = () => {
             </div>
 
             {isMenuOpen && (
-                <nav className="absolute top-full left-0 w-full bg-black-950 border-t border-white/10 py-6 px-6 flex flex-col lg:hidden" aria-label="Mobile">
+                <nav className="absolute top-full left-0 w-full h-[calc(100svh-4.25rem)] overflow-y-auto bg-black-950 border-t border-white/10 py-6 px-6 flex flex-col lg:hidden" aria-label="Mobile">
+                    <NavLink to="/services" end className={mobileLinkClass}>All services</NavLink>
+                    <ul className="border-b border-white/10 py-2 pl-4">
+                        {serviceList.map((s) => (
+                            <li key={s.slug}>
+                                <NavLink to={`/services/${s.slug}`} className={({ isActive }) => `block py-2.5 hover:text-gold-300 ${isActive ? 'text-gold-300' : 'text-black-200'}`}>
+                                    {s.name}
+                                </NavLink>
+                            </li>
+                        ))}
+                    </ul>
                     {navLinks.map((link) => (
-                        <NavLink
-                            key={link.name}
-                            to={link.path}
-                            end={link.end}
-                            className={({ isActive }) =>
-                                `text-lg font-bold border-b border-white/10 py-4 block hover:text-gold-300 ${isActive ? 'text-gold-300' : 'text-white'}`
-                            }
-                        >
+                        <NavLink key={link.name} to={link.path} className={mobileLinkClass}>
                             {link.name}
                         </NavLink>
                     ))}

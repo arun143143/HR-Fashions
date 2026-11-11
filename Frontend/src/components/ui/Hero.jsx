@@ -2,41 +2,46 @@ import { Link } from 'react-router-dom';
 import OptimizedImage from './OptimizedImage';
 import { site, whatsappHref } from '../../data/site';
 
+// Landing hero: the main image fills the screen edge to edge and the words sit on its dark side.
 const Hero = () => (
-    <section className="bg-black-950 pt-28 pb-16 md:pt-40 md:pb-24">
-        <div className="container mx-auto px-6 grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
-            <div className="lg:col-span-7">
+    <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-black-950 lg:items-center">
+        <div className="absolute inset-y-0 right-0 -z-10 w-full lg:w-[62%]">
+            <OptimizedImage
+                src={site.heroImage}
+                alt="A customer wearing a silk saree and blouse tailored by HR Fashions"
+                priority
+                width={1600}
+                height={2000}
+                widths={[640, 1024, 1440, 1920]}
+                sizes="(min-width: 1024px) 62vw, 100vw"
+                className="h-full w-full object-cover object-[center_20%]"
+            />
+            <div
+                className="absolute inset-0 bg-gradient-to-t from-black-950 via-black-950/75 to-black-950/30 lg:bg-gradient-to-r lg:from-black-950 lg:via-black-950/45 lg:to-transparent"
+                aria-hidden="true"
+            />
+        </div>
+
+        <div className="container mx-auto px-6 pb-20 pt-40 lg:py-44">
+            <div className="max-w-2xl">
                 <h1 className="font-serif font-semibold text-white leading-[1.05] tracking-tight text-[clamp(2.6rem,7vw,5.25rem)]">
                     Clothes stitched to&nbsp;your measure.
                 </h1>
                 <div className="stitch stitch-draw max-w-md my-8" aria-hidden="true" />
-                <p className="text-lg md:text-xl text-black-200 leading-relaxed max-w-xl">
-                    Blouses, lehengas, anarkalis, kurtis and kids&rsquo; frocks, tailored in Chennai for women and girls.
+                <p className="text-lg md:text-xl text-black-100 leading-relaxed max-w-xl">
+                    HR Fashions is a ladies and kids tailor in Chennai. We stitch blouses, lehengas, anarkalis, kurtis,
+                    suits and girls&rsquo; frocks to your measurements.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 mt-10">
                     <Link to="/book-appointment" className="btn-gold">Book an appointment</Link>
-                    <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn-outline-gold">
+                    <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="btn-outline-gold bg-black-950/60">
                         Message us on WhatsApp
                     </a>
                 </div>
             </div>
-
-            <div className="lg:col-span-5 p-[7px]">
-                <figure className="zari-frame bg-black-900 kolam">
-                    <OptimizedImage
-                        src={site.heroImage}
-                        alt="A finished outfit tailored by HR Fashions"
-                        priority
-                        width={800}
-                        height={1000}
-                        widths={[640, 1024, 1440, 1920]}
-                        sizes="(min-width: 1024px) 40vw, 100vw"
-                        className="block w-full aspect-[4/5] object-cover"
-                    />
-                    <div className="zari-band" aria-hidden="true" />
-                </figure>
-            </div>
         </div>
+
+        <div className="zari-band absolute inset-x-0 bottom-0" aria-hidden="true" />
     </section>
 );
 

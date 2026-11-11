@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Scissors, Ruler, Home as HomeIcon, CalendarCheck } from 'lucide-react';
 import Hero from '../components/ui/Hero';
+import ScrollScene from '../components/ui/ScrollScene';
+import TailorChennai from '../components/ui/TailorChennai';
 import OptimizedImage from '../components/ui/OptimizedImage';
 import useDocumentMeta from '../hooks/useDocumentMeta';
 import { serviceList } from '../data/services';
@@ -53,6 +55,10 @@ const Home = () => {
                     ))}
                 </ul>
             </section>
+
+            <ScrollScene />
+
+            <TailorChennai />
 
             <section className="bg-black-900 kolam" aria-labelledby="home-steps">
                 <div className="container mx-auto px-6 py-20 md:py-28">
