@@ -12,5 +12,10 @@ export const site = {
     deliveryNote: 'Free pickup & delivery within Chennai.',
     heroImage:
         'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&q=75&w=2000',
+    // Leave hours empty until the owner confirms them; the footer hides the line when empty.
+    hours: '',
     social: { instagram: '', facebook: '' },
 };
+
+export const whatsappHref = `https://wa.me/${site.whatsappNumber}`;
+export const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.address)}`;

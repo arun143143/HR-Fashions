@@ -5,13 +5,13 @@ import { site } from '../../data/site';
 
 const navLinks = [
     { name: 'Home', path: '/', end: true },
-    { name: 'Services', path: '/services' },
-    { name: 'Kids Wear', path: '/services/kids-frock' },
-    { name: 'How It Works', path: '/how-it-works' },
+    { name: 'Services', path: '/services', end: true },
+    { name: 'Kids wear', path: '/services/kids-frock' },
+    { name: 'How it works', path: '/how-it-works' },
 ];
 
 const linkClass = ({ isActive }) =>
-    `text-sm font-semibold uppercase tracking-widest transition-colors hover:text-gold-500 ${isActive ? 'text-gold-500' : 'text-white/80'}`;
+    `text-[15px] font-bold transition-colors hover:text-gold-300 ${isActive ? 'text-gold-300' : 'text-white/85'}`;
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -30,11 +30,11 @@ const Header = () => {
 
     return (
         <header
-            className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled || isMenuOpen ? 'bg-black-950/95 backdrop-blur-md border-b border-white/10 py-3' : 'bg-transparent py-6'}`}
+            className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${scrolled || isMenuOpen ? 'bg-black-950/95 backdrop-blur-md border-gold-500/30 py-3' : 'bg-black-950 border-transparent py-5'}`}
         >
             <div className="container mx-auto px-6 flex justify-between items-center">
-                <Link to="/" className="font-serif text-2xl md:text-3xl font-bold tracking-tight text-white" aria-label={`${site.name} home`}>
-                    {site.brandMark}<span className="text-gold-500">.</span>
+                <Link to="/" className="font-serif text-2xl md:text-[1.75rem] font-semibold tracking-tight text-white" aria-label={`${site.name} home`}>
+                    {site.name}
                 </Link>
 
                 <nav className="hidden lg:flex items-center gap-8" aria-label="Main">
@@ -46,17 +46,17 @@ const Header = () => {
                 </nav>
 
                 <div className="hidden lg:flex items-center gap-6">
-                    <a href={site.phoneHref} className="flex items-center gap-2 text-sm font-medium text-white hover:text-gold-500 transition-colors">
-                        <Phone size={18} className="text-gold-500" />
+                    <a href={site.phoneHref} className="flex items-center gap-2 text-[15px] font-bold text-white hover:text-gold-300 transition-colors">
+                        <Phone size={18} className="text-gold-500" aria-hidden="true" />
                         <span>{site.phone}</span>
                     </a>
-                    <Link to="/book-appointment" className="btn-gold">Book Appointment</Link>
+                    <Link to="/book-appointment" className="btn-gold !px-5 !py-2.5">Book an appointment</Link>
                 </div>
 
                 <button
                     type="button"
                     onClick={() => setIsMenuOpen((open) => !open)}
-                    className="lg:hidden text-white hover:text-gold-500 transition-colors"
+                    className="lg:hidden text-white hover:text-gold-300 transition-colors p-2 -mr-2"
                     aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
                     aria-expanded={isMenuOpen}
                 >
@@ -65,20 +65,23 @@ const Header = () => {
             </div>
 
             {isMenuOpen && (
-                <nav className="absolute top-full left-0 w-full bg-black-900 border-t border-white/10 py-8 px-6 flex flex-col gap-4 lg:hidden" aria-label="Mobile">
+                <nav className="absolute top-full left-0 w-full bg-black-950 border-t border-white/10 py-6 px-6 flex flex-col lg:hidden" aria-label="Mobile">
                     {navLinks.map((link) => (
                         <NavLink
                             key={link.name}
                             to={link.path}
                             end={link.end}
                             className={({ isActive }) =>
-                                `text-lg font-medium border-b border-white/5 py-3 block hover:text-gold-500 ${isActive ? 'text-gold-500' : 'text-white'}`
+                                `text-lg font-bold border-b border-white/10 py-4 block hover:text-gold-300 ${isActive ? 'text-gold-300' : 'text-white'}`
                             }
                         >
                             {link.name}
                         </NavLink>
                     ))}
-                    <Link to="/book-appointment" className="btn-gold text-center mt-4 w-full">Book Appointment</Link>
+                    <a href={site.phoneHref} className="flex items-center gap-3 py-4 text-lg font-bold text-white">
+                        <Phone size={18} className="text-gold-500" aria-hidden="true" /> {site.phone}
+                    </a>
+                    <Link to="/book-appointment" className="btn-gold text-center mt-2 w-full">Book an appointment</Link>
                 </nav>
             )}
         </header>
