@@ -12,7 +12,7 @@ Static React site. All content is in `src/data`. No server, no database calls.
 
 ## Why it is fast
 - Pages other than Home load only when visited.
-- React and icons are separate cached files.
+- React and GSAP are separate cached files.
 - Images are sized for the screen (`srcset`), lazy-loaded, and have reserved space.
 - The hero image is preloaded and fetched at high priority.
 - Fonts connect early and use `display=swap`.

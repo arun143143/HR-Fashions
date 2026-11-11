@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from '../components/ui/Icons';
 import PageIntro from '../components/ui/PageIntro';
 import OptimizedImage from '../components/ui/OptimizedImage';
 import useDocumentMeta from '../hooks/useDocumentMeta';

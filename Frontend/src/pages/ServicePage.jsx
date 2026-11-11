@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { Check } from 'lucide-react';
+import { Diamond } from '../components/ui/Icons';
 import OptimizedImage from '../components/ui/OptimizedImage';
 import useDocumentMeta from '../hooks/useDocumentMeta';
 import { getService } from '../data/services';
@@ -54,7 +54,7 @@ const ServicePage = () => {
                         <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
                             {data.features.map((feature) => (
                                 <li key={feature} className="flex items-start gap-3 text-black-200">
-                                    <Check size={20} className="text-gold-500 shrink-0 mt-0.5" aria-hidden="true" />
+                                    <Diamond size={14} className="text-gold-500 shrink-0 mt-[0.4rem]" />
                                     {feature}
                                 </li>
                             ))}
@@ -99,7 +99,7 @@ const ServicePage = () => {
                             </ul>
                             <p className="mt-5 text-black-300">
                                 Have one of these questions?{' '}
-                                <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="text-gold-300 font-bold underline underline-offset-4 hover:text-white transition-colors">
+                                <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="text-gold-300 font-bold link-stitch hover:text-white">
                                     Ask us on WhatsApp
                                 </a>
                             </p>
@@ -108,7 +108,7 @@ const ServicePage = () => {
 
                     <p className="text-black-300">
                         New to custom tailoring?{' '}
-                        <Link to="/how-it-works" className="text-gold-300 font-bold underline underline-offset-4 hover:text-white transition-colors">
+                        <Link to="/how-it-works" className="text-gold-300 font-bold link-stitch hover:text-white">
                             See how it works
                         </Link>
                     </p>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Scissors, Ruler, Home as HomeIcon, CalendarCheck } from 'lucide-react';
+import { Needle, TapeMeasure, DressForm, CalendarStitch } from '../components/ui/Icons';
 import Hero from '../components/ui/Hero';
 import ScrollScene from '../components/ui/ScrollScene';
 import TailorChennai from '../components/ui/TailorChennai';
@@ -12,10 +12,10 @@ import { whatsappHref } from '../data/site';
 
 // TODO before launch: the owner confirms each of these is true for HR Fashions.
 const reasons = [
-    { icon: Scissors, title: 'Only women and girls', desc: 'Blouses, bridal lehengas and kids’ frocks are all we stitch.' },
-    { icon: HomeIcon, title: 'Measured at your home', desc: 'We come to you for measurements, so there is no trip to a shop.' },
-    { icon: Ruler, title: 'Fitted, then adjusted', desc: 'You try the outfit on and we adjust it until it sits right.' },
-    { icon: CalendarCheck, title: 'A date agreed up front', desc: 'We agree the delivery date when you book, before stitching starts.' },
+    { icon: Needle, title: 'Only women and girls', desc: 'Blouses, bridal lehengas and kids’ frocks are all we stitch.' },
+    { icon: TapeMeasure, title: 'Measured at your home', desc: 'We come to you for measurements, so there is no trip to a shop.' },
+    { icon: DressForm, title: 'Fitted, then adjusted', desc: 'You try the outfit on and we adjust it until it sits right.' },
+    { icon: CalendarStitch, title: 'A date agreed up front', desc: 'We agree the delivery date when you book, before stitching starts.' },
 ];
 
 const Home = () => {
@@ -28,7 +28,7 @@ const Home = () => {
             <section className="container mx-auto px-6 py-20 md:py-28" aria-labelledby="home-services">
                 <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
                     <h2 id="home-services" className="section-heading">What we stitch</h2>
-                    <Link to="/services" className="text-gold-300 font-bold underline underline-offset-4 hover:text-white transition-colors">
+                    <Link to="/services" className="text-gold-300 font-bold link-stitch hover:text-white">
                         See all services
                     </Link>
                 </div>
@@ -86,7 +86,7 @@ const Home = () => {
                 <ul className="lg:col-span-7 divide-y divide-white/10 border-y border-white/10">
                     {reasons.map((reason) => (
                         <li key={reason.title} className="flex gap-5 py-6">
-                            <reason.icon size={26} strokeWidth={1.5} className="text-gold-500 shrink-0 mt-1" aria-hidden="true" />
+                            <reason.icon size={30} className="text-gold-500 shrink-0" />
                             <div>
                                 <h3 className="font-serif text-xl text-white mb-1">{reason.title}</h3>
                                 <p className="text-black-300 leading-relaxed">{reason.desc}</p>

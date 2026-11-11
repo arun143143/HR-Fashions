@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Marketing and booking site for HR Fashions, a tailoring business. The only app is `Frontend/`: Vite 5, React 18, React Router 6, Tailwind 3 and framer-motion, deployed to Vercel as a static SPA (`vercel.json` rewrites every path to `index.html`). Supabase is the planned back end. There is no server code: the old `Backend/` folder is being removed.
+Marketing and booking site for HR Fashions, a tailoring business. The only app is `Frontend/`: Vite 5, React 18, React Router 6, Tailwind 3 and GSAP with ScrollTrigger, deployed to Vercel as a static SPA (`vercel.json` rewrites every path to `index.html`). Supabase is the planned back end. There is no server code: the old `Backend/` folder is being removed.
 
 ## Commands
 
@@ -32,8 +32,9 @@ There is no test framework yet. `npm run lint` and `npm run build` are the only 
 - **Supabase:** `src/lib/supabase.js` exports `null` when the env values are missing, so the site must still render without a database. Guard every use.
 - **Database:** `supabase/` holds migrations, `seed.sql` (generated from `Frontend/src/data` by `supabase/scripts/build-seed.mjs`) and a permission test (`cd supabase/tests && npm install && npm test`). Not applied to a live project yet; see `supabase/README.md`.
 - **Images:** every `<img>` goes through `components/ui/OptimizedImage`. `lib/images.js` builds a `srcset` only for hosts in `RESIZABLE_HOSTS` (Unsplash for now). Only the first-screen image sets `priority`.
+- **Icons:** use the custom set in `src/components/ui/Icons.jsx` (1.5px gold line, decorative by default). Do not add an icon library; draw new icons in the same style.
 - **Theme:** colours and fonts live only in `tailwind.config.js` (black and antique gold, e.g. `black-950` and `gold-500`) and in `src/styles/index.css` (Tailwind layers and button classes).
-- **Bundle:** `vite.config.js` splits out `react` (react, react-dom, react-router-dom) and `icons` (lucide-react) as manual chunks, so these vendor files stay cached between releases.
+- **Bundle:** `vite.config.js` splits out `react` (react, react-dom, react-router-dom) and `gsap` as manual chunks, so these vendor files stay cached between releases.
 
 ## Planned work
 

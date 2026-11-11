@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { Facebook, Instagram, MapPin, Phone, Mail, Clock } from '../ui/Icons';
 import { site, mapHref } from '../../data/site';
 import { serviceList } from '../../data/services';
 
@@ -64,7 +64,7 @@ const Footer = () => (
                                 <MapPin className="text-gold-500 shrink-0 mt-1" size={20} aria-hidden="true" />
                                 <p>
                                     {site.address}
-                                    <a href={mapHref} target="_blank" rel="noopener noreferrer" className="block mt-1 text-gold-300 underline underline-offset-4 hover:text-white transition-colors">
+                                    <a href={mapHref} target="_blank" rel="noopener noreferrer" className="block mt-1 text-gold-300 link-stitch hover:text-white">
                                         Open in Google Maps
                                     </a>
                                 </p>

@@ -16,7 +16,7 @@ const Pricing = () => {
                     <section key={s.slug} aria-labelledby={`price-${s.slug}`}>
                         <div className="flex items-baseline justify-between gap-4 border-b border-gold-500 pb-3">
                             <h2 id={`price-${s.slug}`} className="font-serif font-semibold text-2xl md:text-3xl text-white">{s.name}</h2>
-                            <Link to={`/services/${s.slug}`} className="shrink-0 text-gold-300 font-bold underline underline-offset-4 hover:text-white transition-colors">
+                            <Link to={`/services/${s.slug}`} className="shrink-0 text-gold-300 font-bold link-stitch hover:text-white">
                                 See styles
                             </Link>
                         </div>

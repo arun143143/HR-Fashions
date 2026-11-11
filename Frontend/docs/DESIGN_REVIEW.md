@@ -48,8 +48,8 @@ Two parts of the advice contradict its own goal:
 | Unsplash stock photos | `src/data/services.js`, `src/data/designs.js`, `src/data/site.js`, `src/components/ui/ScrollScene.jsx` | Owner's own photos (action 1) |
 | Stock marketing phrases, for example "Experience the perfect fit…", "Power dressing meets elegance…" | `src/data/services.js` (descriptions) | Rewrite from owner facts (action 2) |
 | Title Case feature lists such as "Premium Interlining" and "Princess Cut & Katori Cut Expertise" | `src/data/services.js` (features) | Sentence case, concrete wording (action 2) |
-| Lucide icons | `src/components/layout/Footer.jsx`, `src/components/layout/Header.jsx`, `src/components/ui/WhatsAppButton.jsx`, `src/pages/Gallery.jsx`, `src/pages/Home.jsx`, `src/pages/ServicePage.jsx` | Custom icon set (action 3) |
-| `framer-motion` installed but not used anywhere | `package.json` | Remove it (action 4) |
+| ~~Lucide icons~~ | `src/components/layout/Footer.jsx`, `src/components/layout/Header.jsx`, `src/components/ui/WhatsAppButton.jsx`, `src/pages/Gallery.jsx`, `src/pages/Home.jsx`, `src/pages/ServicePage.jsx` | Done: custom set in `src/components/ui/Icons.jsx` |
+| ~~`framer-motion` installed but not used~~ | `package.json` | Done: removed, with `lucide-react` |
 
 ### Kept on purpose
 
@@ -61,9 +61,9 @@ The frontend-design skill would flag a near-black background with a single gold 
 | --- | --- | --- | --- | --- |
 | 1 | High | Photograph 12 to 20 pieces of the shop's own work (see the shot list below) | Owner | One afternoon |
 | 2 | High | Rewrite each service description and feature list in the shop's own voice, from facts the owner gives | Claude, then owner checks | Small |
-| 3 | Medium | Replace Lucide with about 8 custom line icons (needle, tape measure, scissors, thread spool, pin, map pin, phone, chat) in a 1.5px gold stroke | Claude | Small |
-| 4 | Medium | Remove the unused `framer-motion` dependency | Claude | Trivial |
-| 5 | Medium | Add micro-interactions: a stitch-line underline that sews in on link hover, and a pressed state on buttons | Claude | Small |
+| 3 | Done | Replaced Lucide with a custom line set in `src/components/ui/Icons.jsx`: needle, tape measure, dress form and calendar for the home page, a zari diamond bullet, and contact and interface icons, all in a 1.5px line | Claude | — |
+| 4 | Done | Removed `framer-motion` and `lucide-react` | Claude | — |
+| 5 | Done | Links: a gold stitch sews in on hover or keyboard focus (`.link-stitch`). Buttons: press in slightly when tapped. Neither moves for people who turn off motion | Claude | — |
 | 6 | Later | Use the owner's own words: one real quote, real years in the trade, real reviews only | Owner | — |
 | 7 | Later | Tamil version, with Noto Serif Tamil and Noto Sans Tamil | Claude | Medium |
 

@@ -12,7 +12,6 @@ export default defineConfig({
                 // Stable vendor files stay cached in the browser between releases.
                 manualChunks: {
                     react: ['react', 'react-dom', 'react-router-dom'],
-                    icons: ['lucide-react'],
                     gsap: ['gsap'],
                 },
             },
