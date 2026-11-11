@@ -2,9 +2,11 @@
   "name": "hr-fashions-db-tests",
   "private": true,
   "type": "module",
-  "description": "Checks the Supabase migrations and security rules on an in-memory Postgres. No Docker or Supabase project needed.",
+  "description": "Checks the Supabase migrations, security rules and schema drift on an in-memory Postgres. No Docker or Supabase project needed.",
   "scripts": {
-    "test": "node rls-test.mjs"
+    "test": "node rls-test.mjs && node schema-drift.mjs",
+    "test:rls": "node rls-test.mjs",
+    "test:drift": "node schema-drift.mjs"
   },
   "devDependencies": {
     "@electric-sql/pglite": "0.2.17"
