@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, ChevronDown } from '../ui/Icons';
+import { Menu, X, Phone, ChevronDown, User } from '../ui/Icons';
 import { site } from '../../data/site';
 import { serviceList } from '../../data/services';
+import { useAuth } from '../../context/AuthContext';
 
 const navLinks = [
     { name: 'Gallery', path: '/gallery' },
@@ -65,6 +66,7 @@ const ServicesMenu = ({ pathname }) => {
 };
 
 const Header = () => {
+    const { user, profile } = useAuth();
     const [scrolled, setScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { pathname } = useLocation();
@@ -95,6 +97,25 @@ const Header = () => {
                             {link.name}
                         </NavLink>
                     ))}
+                    {user ? (
+                        <>
+                            {profile?.role === 'admin' && (
+                                <NavLink to="/admin" className={linkClass}>
+                                    Admin
+                                </NavLink>
+                            )}
+                            <NavLink to="/account" className={linkClass}>
+                                <span className="inline-flex items-center gap-1.5">
+                                    <User size={15} />
+                                    Account
+                                </span>
+                            </NavLink>
+                        </>
+                    ) : (
+                        <NavLink to="/login" className={linkClass}>
+                            Sign In
+                        </NavLink>
+                    )}
                 </nav>
 
                 <div className="hidden lg:flex items-center gap-6">
@@ -133,6 +154,22 @@ const Header = () => {
                             {link.name}
                         </NavLink>
                     ))}
+                    {user ? (
+                        <>
+                            {profile?.role === 'admin' && (
+                                <NavLink to="/admin" className={mobileLinkClass}>
+                                    Admin Portal
+                                </NavLink>
+                            )}
+                            <NavLink to="/account" className={mobileLinkClass}>
+                                My Account
+                            </NavLink>
+                        </>
+                    ) : (
+                        <NavLink to="/login" className={mobileLinkClass}>
+                            Sign In
+                        </NavLink>
+                    )}
                     <a href={site.phoneHref} className="flex items-center gap-3 py-4 text-lg font-bold text-white">
                         <Phone size={18} className="text-gold-500" aria-hidden="true" /> {site.phone}
                     </a>

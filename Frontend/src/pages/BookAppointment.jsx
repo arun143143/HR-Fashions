@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PageIntro from '../components/ui/PageIntro';
 import useDocumentMeta from '../hooks/useDocumentMeta';
 import { site } from '../data/site';
 import { serviceList } from '../data/services';
+import { useAuth } from '../context/AuthContext';
+import { supabase } from '../lib/supabase';
 
 const SERVICE_OPTIONS = [...serviceList.map((s) => s.name), 'Alteration', 'Other'];
 
@@ -25,12 +27,43 @@ const labelClass = 'block font-bold text-white mb-2';
 // Until bookings are saved in Supabase, the form opens WhatsApp with the details filled in.
 const BookAppointment = () => {
     useDocumentMeta('Book an appointment', 'Send HR Fashions a stitching request. It opens in WhatsApp, and we confirm a time for measurements with you there.');
+    const { user, profile } = useAuth();
     const [form, setForm] = useState({ name: '', phone: '', service: SERVICE_OPTIONS[0], date: '' });
+    const [isSaving, setIsSaving] = useState(false);
+
+    useEffect(() => {
+        if (profile) {
+            setForm((f) => ({
+                ...f,
+                name: f.name || profile.name || '',
+                phone: f.phone || profile.phone || '',
+            }));
+        }
+    }, [profile]);
 
     const update = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsSaving(true);
+
+        if (supabase) {
+            try {
+                // Must insert without .select() as anon/customers have write-only permission on insert
+                await supabase.from('bookings').insert({
+                    user_id: user?.id || null,
+                    name: form.name.trim(),
+                    phone: form.phone.trim(),
+                    garment: form.service,
+                    preferred_date: form.date || null,
+                    status: 'new',
+                });
+            } catch {
+                // Database save error does not block WhatsApp transition
+            }
+        }
+
+        setIsSaving(false);
         const message = [
             `Hello ${site.name}, I would like to book an appointment.`,
             `Name: ${form.name.trim()}`,
@@ -69,7 +102,9 @@ const BookAppointment = () => {
                         <label htmlFor="booking-date" className={labelClass}>Preferred date</label>
                         <input id="booking-date" type="date" required min={todayIso()} value={form.date} onChange={update('date')} className={inputClass} />
                     </div>
-                    <button type="submit" className="btn-gold w-full mt-4">Send request on WhatsApp</button>
+                    <button type="submit" disabled={isSaving} className="btn-gold w-full mt-4 disabled:opacity-50">
+                        {isSaving ? 'Saving request...' : 'Send request on WhatsApp'}
+                    </button>
                 </form>
             </div>
             </div>

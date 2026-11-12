@@ -147,3 +147,40 @@ export const ChevronRight = (p) => (
         <path d="m9.5 6 6 6-6 6" />
     </Svg>
 );
+
+// ---- Account & Auth --------------------------------------------------------------------
+
+export const User = (p) => (
+    <Svg {...p}>
+        <circle cx="12" cy="8" r="4" />
+        <path d="M5.5 20a6.5 6.5 0 0 1 13 0" />
+    </Svg>
+);
+
+export const Lock = (p) => (
+    <Svg {...p}>
+        <rect x="5" y="11" width="14" height="10" rx="1.5" />
+        <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+    </Svg>
+);
+
+export const LogOut = (p) => (
+    <Svg {...p}>
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+        <path d="m16 17 5-5-5-5M21 12H9" />
+    </Svg>
+);
+
+export const ShieldCheck = (p) => (
+    <Svg {...p}>
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+        <path d="m9 12 2 2 4-4" />
+    </Svg>
+);
+
+export const Check = (p) => (
+    <Svg {...p}>
+        <path d="m5 13 4 4L19 7" />
+    </Svg>
+);
+
