@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply font-sans bg-black-950 text-white antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-serif text-white;
+    }
+
+    :focus-visible {
+        @apply outline outline-2 outline-offset-4 outline-gold-300;
+    }
+}
+
+@layer components {
+    /* Buttons press in slightly when tapped or clicked, so the action feels received. */
+    .btn-gold {
+        @apply inline-flex items-center justify-center px-7 py-3.5 bg-gold-500 text-black-950 font-bold text-base rounded-none transition-[color,background-color,transform] duration-200 hover:bg-gold-300 active:translate-y-px active:scale-[0.98] active:bg-gold-600 cursor-pointer;
+    }
+
+    .btn-outline-gold {
+        @apply inline-flex items-center justify-center px-7 py-3.5 border border-gold-500 text-gold-300 font-bold text-base rounded-none transition-[color,background-color,transform] duration-200 hover:bg-gold-500 hover:text-black-950 active:translate-y-px active:scale-[0.98] active:bg-gold-600 cursor-pointer;
+    }
+
+    /* Text link: a thin underline at rest; on hover or keyboard focus a gold running stitch is sewn across it. */
+    .link-stitch {
+        text-decoration: none;
+        padding-bottom: 3px;
+        background-image:
+            repeating-linear-gradient(90deg, theme('colors.gold.300') 0 7px, transparent 7px 11px),
+            linear-gradient(currentColor, currentColor);
+        background-repeat: no-repeat;
+        background-position: 0 100%, 0 100%;
+        background-size: 0% 2px, 100% 1px;
+        transition: background-size 0.5s cubic-bezier(0.3, 0, 0.2, 1), color 0.2s ease;
+    }
+
+    .link-stitch:hover,
+    .link-stitch:focus-visible {
+        background-size: 100% 2px, 0% 1px;
+    }
+
+    .section-heading {
+        @apply font-serif font-semibold text-white text-3xl md:text-[2.75rem] leading-[1.15];
+    }
+
+    /* Brand device: a running stitch. Use it where a rule or connector is needed. */
+    .stitch {
+        height: 2px;
+        background-image: repeating-linear-gradient(90deg, theme('colors.gold.500') 0 14px, transparent 14px 22px);
+    }
+
+    .stitch-vertical {
+        width: 2px;
+        background-image: repeating-linear-gradient(180deg, theme('colors.gold.500') 0 14px, transparent 14px 22px);
+    }
+
+    /* Zari: a thin double gold line, like the edge of a silk saree border. */
+    .zari-frame {
+        border: 1px solid theme('colors.gold.500');
+        outline: 1px solid rgb(198 134 42 / 0.4);
+        outline-offset: 6px;
+    }
+
+    /* Zari temple border: the row of small triangles woven along a Kanchipuram saree. */
+    .zari-band {
+        height: 10px;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10'%3E%3Cpath d='M0 10 7 0l7 10z' fill='%23c6862a'/%3E%3C/svg%3E") repeat-x left bottom;
+    }
+
+    /* Kolam: a faint grid of dots, as drawn before the lines of a kolam. */
+    .kolam {
+        background-image: radial-gradient(rgb(224 184 99 / 0.16) 1px, transparent 1.5px);
+        background-size: 22px 22px;
+    }
+}
+
+/* The one load animation on the site: the stitch under the hero headline is sewn left to right. */
+@keyframes stitch-draw {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .link-stitch,
+    .btn-gold,
+    .btn-outline-gold {
+        transition: none;
+    }
+
+    .btn-gold:active,
+    .btn-outline-gold:active {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .stitch-draw {
+        animation: stitch-draw 1.6s cubic-bezier(0.3, 0, 0.2, 1) 0.2s both;
+    }
+}

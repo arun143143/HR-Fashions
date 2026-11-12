@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HR Fashions | Scroll demo</title>
+    <meta name="description" content="Prototype of the HR Fashions scroll-driven fabric scene." />
+
+    <!--
+        HR Fashions scrollytelling prototype. One file, no build step: open it in a browser.
+        Libraries: Tailwind (Play CDN), GSAP + ScrollTrigger (animation tied to scroll), Lenis (smooth scrolling).
+        Photos are Lorem Picsum placeholders. Swap them in the PHOTOS block in the script at the bottom.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet" />
+
+    <!-- The Tailwind Play CDN does not send CORS headers, so it cannot take an integrity hash. Fine for a prototype only. -->
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        onyx: '#0A0A0A',
+                        charcoal: '#141414',
+                        gold: { DEFAULT: '#C6862A', soft: '#E0B863' },
+                        ivory: '#F3EEE6',
+                        ash: '#A8A29A',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['Lato', 'system-ui', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+        body { background: #0A0A0A; }
+        :focus-visible { outline: 2px solid #E0B863; outline-offset: 4px; }
+
+        /* Brand thread: a running stitch in antique gold. */
+        .stitch {
+            height: 2px;
+            background-image: repeating-linear-gradient(90deg, #C6862A 0 14px, transparent 14px 22px);
+            transform-origin: left center;
+        }
+
+        /* Faint kolam dot grid used as a texture behind the revealed section. */
+        .kolam {
+            background-image: radial-gradient(rgb(224 184 99 / 0.14) 1px, transparent 1.5px);
+            background-size: 22px 22px;
+        }
+
+        /* Headline lines rise out of a mask on load. */
+        .line-mask { display: block; overflow: hidden; padding-bottom: 0.08em; }
+        .line-mask > span { display: block; }
+
+        /* Scroll cue: a short gold line that travels down. */
+        @keyframes cue { 0% { transform: scaleY(0); transform-origin: top; } 45% { transform: scaleY(1); transform-origin: top; } 55% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+        .cue-line { animation: cue 2.4s cubic-bezier(.6,0,.2,1) infinite; }
+
+        /* Hidden until JavaScript runs, so nothing flashes before the animation sets its first frame. */
+        .js [data-beat] { opacity: 0; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .cue-line { animation: none; }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-ivory antialiased">
+    <script>document.documentElement.classList.add('js');</script>
+
+    <!-- Header -->
+    <header id="site-header" class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-colors duration-500">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-10">
+            <a href="#top" class="font-serif text-2xl font-semibold tracking-tight text-ivory">HR Fashions</a>
+            <a href="#book" class="border border-gold px-4 py-2 text-sm font-bold text-gold-soft transition-colors hover:bg-gold hover:text-onyx md:px-5 md:text-base">
+                Book a fitting
+            </a>
+        </div>
+    </header>
+
+    <main id="top">
+        <!-- 1. HERO -->
+        <section class="relative flex min-h-[100svh] items-end bg-onyx" aria-labelledby="hero-title">
+            <div class="mx-auto w-full max-w-7xl px-5 pb-20 pt-32 md:px-10 md:pb-28">
+                <h1 id="hero-title" class="max-w-5xl font-serif text-[clamp(2.9rem,9vw,8rem)] font-semibold leading-[0.98] tracking-tight">
+                    <span class="line-mask"><span data-hero-line>Clothes cut</span></span>
+                    <span class="line-mask"><span data-hero-line>for one person.</span></span>
+                </h1>
+                <div data-hero-stitch class="stitch mt-8 w-full max-w-md md:mt-10"></div>
+                <div class="mt-8 flex flex-col gap-10 md:mt-10 md:flex-row md:items-end md:justify-between">
+                    <p data-hero-copy class="max-w-md text-lg leading-relaxed text-ash md:text-xl">
+                        Blouses, lehengas, anarkalis and kids&rsquo; frocks, measured, stitched and fitted in Chennai for women and girls.
+                    </p>
+                    <div data-hero-copy class="flex items-center gap-4 text-sm text-ash">
+                        <span class="relative block h-12 w-px overflow-hidden bg-white/10" aria-hidden="true">
+                            <span class="cue-line absolute inset-0 bg-gold"></span>
+                        </span>
+                        Scroll to see the work
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2 + 3. FABRIC SCENE, then the hand-over to the next section -->
+        <section id="scene" class="relative h-[100svh] overflow-hidden" aria-label="Our craft">
+            <!-- Underneath: the next part of the site, uncovered when the fabric panel slides away. -->
+            <div id="reveal" class="kolam absolute inset-0 z-0 flex items-center bg-charcoal">
+                <div class="mx-auto w-full max-w-7xl px-5 md:px-10">
+                    <h2 class="max-w-3xl font-serif text-[clamp(2.2rem,6vw,4.75rem)] font-semibold leading-[1.05] tracking-tight">
+                        A fitting, not a size chart.
+                    </h2>
+                    <div class="stitch mt-8 w-40"></div>
+                    <p class="mt-8 max-w-xl text-lg leading-relaxed text-ash md:text-xl">
+                        Every piece is cut to your measurements and tried on you before it is finished. Here is how it goes.
+                    </p>
+                </div>
+            </div>
+
+            <!-- On top: the fabric panel. -->
+            <div id="fabric" class="absolute inset-0 z-10 overflow-hidden border-b border-gold/70 bg-onyx will-change-transform">
+                <div id="frame" class="absolute inset-0 overflow-hidden will-change-transform">
+                    <img id="fabric-img" alt="Close-up of a white dress in soft light" class="h-full w-full object-cover object-[center_35%] will-change-transform" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/40 to-onyx/10" aria-hidden="true"></div>
+                </div>
+
+                <div class="absolute inset-x-0 bottom-0 mx-auto w-full max-w-7xl px-5 pb-16 md:px-10 md:pb-24">
+                    <div class="relative min-h-[15rem] md:min-h-[17rem]">
+                        <div data-beat="1" class="absolute inset-x-0 bottom-0">
+                            <h2 class="font-serif text-[clamp(2.4rem,7vw,5.5rem)] font-semibold leading-[1.02] tracking-tight">Meticulous tailoring</h2>
+                            <div data-beat-stitch class="stitch mt-6 w-48 md:w-64"></div>
+                            <p class="mt-6 max-w-lg text-lg leading-relaxed text-ivory/85 md:text-xl">
+                                Hand-finished seams, lined bodices and darts placed to your shape, not to a pattern size.
+                            </p>
+                        </div>
+                        <div data-beat="2" class="absolute inset-x-0 bottom-0">
+                            <h2 class="font-serif text-[clamp(2.4rem,7vw,5.5rem)] font-semibold leading-[1.02] tracking-tight">Premium fabrics</h2>
+                            <div data-beat-stitch class="stitch mt-6 w-48 md:w-64"></div>
+                            <p class="mt-6 max-w-lg text-lg leading-relaxed text-ivory/85 md:text-xl">
+                                Kanchipuram silk, georgette, chiffon and cotton, chosen with you for how they fall and how they wear.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The rest of the site continues after the scene. -->
+        <section class="kolam bg-charcoal" aria-labelledby="steps-title">
+            <div class="mx-auto max-w-7xl px-5 pb-24 pt-4 md:px-10 md:pb-32">
+                <h2 id="steps-title" class="sr-only">How a fitting works</h2>
+                <ol class="grid gap-12 border-t border-white/10 pt-12 md:grid-cols-3 md:gap-10">
+                    <li>
+                        <span class="block font-serif text-5xl leading-none text-gold" aria-hidden="true">1</span>
+                        <h3 class="mt-5 font-serif text-2xl">Measure</h3>
+                        <p class="mt-3 leading-relaxed text-ash">We take your measurements and talk through the design, the fabric and the date you need it.</p>
+                    </li>
+                    <li>
+                        <span class="block font-serif text-5xl leading-none text-gold" aria-hidden="true">2</span>
+                        <h3 class="mt-5 font-serif text-2xl">Cut and stitch</h3>
+                        <p class="mt-3 leading-relaxed text-ash">The fabric is cut to your numbers and stitched, with lining and finishing done by hand.</p>
+                    </li>
+                    <li>
+                        <span class="block font-serif text-5xl leading-none text-gold" aria-hidden="true">3</span>
+                        <h3 class="mt-5 font-serif text-2xl">Fit and adjust</h3>
+                        <p class="mt-3 leading-relaxed text-ash">You try it on, we adjust it until it sits right, and then it is yours.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="bg-onyx" aria-labelledby="work-title">
+            <div class="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-32">
+                <h2 id="work-title" class="max-w-2xl font-serif text-[clamp(2rem,5vw,3.5rem)] font-semibold leading-[1.08] tracking-tight">From our table</h2>
+                <ul class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
+                    <li>
+                        <figure>
+                            <img data-photo="work1" alt="A customer in a finished outfit" loading="lazy" width="900" height="1200" class="aspect-[3/4] w-full object-cover" />
+                            <figcaption class="mt-3 text-ash">Everyday wear</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img data-photo="work2" alt="A customer in an evening outfit" loading="lazy" width="900" height="1200" class="aspect-[3/4] w-full object-cover" />
+                            <figcaption class="mt-3 text-ash">Evening and occasion wear</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img data-photo="work3" alt="Shoes laid out to match an outfit" loading="lazy" width="900" height="1200" class="aspect-[3/4] w-full object-cover" />
+                            <figcaption class="mt-3 text-ash">Finishing touches</figcaption>
+                        </figure>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="book" class="bg-onyx" aria-labelledby="book-title">
+            <div class="mx-auto max-w-7xl px-5 pb-24 md:px-10 md:pb-32">
+                <div class="border border-gold p-8 outline outline-1 outline-offset-[6px] outline-gold/40 md:p-16">
+                    <h2 id="book-title" class="max-w-2xl font-serif text-[clamp(2rem,5vw,3.5rem)] font-semibold leading-[1.08] tracking-tight">
+                        Tell us what you want stitched.
+                    </h2>
+                    <p class="mt-5 max-w-xl text-lg leading-relaxed text-ash">Send a request and we confirm a fitting time with you on WhatsApp.</p>
+                    <a href="#top" class="mt-10 inline-flex bg-gold px-7 py-3.5 font-bold text-onyx transition-colors hover:bg-gold-soft">Book a fitting</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-gold/60 bg-onyx">
+        <div class="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-10 text-sm text-ash md:flex-row md:justify-between md:px-10">
+            <p class="font-serif text-lg text-ivory">HR Fashions</p>
+            <p>Prototype. Photos are Lorem Picsum placeholders.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" integrity="sha384-B2WBjDzEjJpYvhmi2UyEn7rektqkf5suS6sNoyyrf0EBAwBHdkiXxIlU0V5Ru2ed" crossorigin="anonymous"></script>
+    <script>
+        // ---- Photos: swap these for your own images later -------------------------------
+        const PHOTOS = {
+            fabric: 'https://picsum.photos/id/325/2400/1600', // big image in the fabric scene
+            work1: 'https://picsum.photos/id/64/900/1200',
+            work2: 'https://picsum.photos/id/777/900/1200',
+            work3: 'https://picsum.photos/id/21/900/1200',
+        };
+        document.getElementById('fabric-img').src = PHOTOS.fabric;
+        document.querySelectorAll('[data-photo]').forEach((img) => { img.src = PHOTOS[img.dataset.photo]; });
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Always start at the top, so the scroll scene never opens halfway through after a reload.
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        window.scrollTo(0, 0);
+
+        // The header gets a dark backing once the page moves, so the brand name never sits on top of text.
+        const header = document.getElementById('site-header');
+        const solid = ['bg-onyx/85', 'backdrop-blur-md', 'border-gold/30'];
+        const setHeader = () => {
+            const on = window.scrollY > 40;
+            header.classList.toggle('border-transparent', !on);
+            solid.forEach((c) => header.classList.toggle(c, on));
+        };
+        window.addEventListener('scroll', setHeader, { passive: true });
+        setHeader();
+
+        const mm = gsap.matchMedia();
+
+        // ---- Full motion: smooth scrolling, hero entrance and the fabric scene ----------
+        mm.add('(prefers-reduced-motion: no-preference)', () => {
+            // Smooth scrolling. Lenis eases the wheel; ScrollTrigger reads its position every frame.
+            const lenis = new Lenis({ lerp: 0.085, smoothWheel: true });
+            window.lenis = lenis; // handy for testing in the browser console
+            lenis.on('scroll', ScrollTrigger.update);
+            const raf = (time) => lenis.raf(time * 1000);
+            gsap.ticker.add(raf);
+            gsap.ticker.lagSmoothing(0);
+
+            document.querySelectorAll('a[href^="#"]').forEach((a) => {
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    lenis.scrollTo(a.getAttribute('href'), { duration: 1.6 });
+                });
+            });
+
+            // Hero entrance: the headline rises line by line, then the stitch is sewn.
+            gsap.timeline({ defaults: { ease: 'expo.out' } })
+                .from('[data-hero-line]', { yPercent: 110, duration: 1.5, stagger: 0.12 })
+                .from('[data-hero-stitch]', { scaleX: 0, duration: 1.6, ease: 'power3.inOut' }, 0.5)
+                .from('[data-hero-copy]', { opacity: 0, y: 16, duration: 1.2, stagger: 0.1 }, 0.9);
+
+            // Fabric scene. One timeline, pinned, scrubbed by the scroll wheel.
+            // Timeline units: 0-1 focus pull, 1-2.4 first words, 2.4-3.8 second words, 3.8-5 hand-over.
+            const isSmall = window.matchMedia('(max-width: 767px)').matches;
+            const blurStart = isSmall ? 10 : 18;
+
+            gsap.set('[data-beat]', { opacity: 0, y: 40 });
+            gsap.set('[data-beat-stitch]', { scaleX: 0 });
+
+            const scene = gsap.timeline({
+                defaults: { ease: 'none' },
+                scrollTrigger: {
+                    trigger: '#scene',
+                    start: 'top top',
+                    end: () => '+=' + window.innerHeight * 4.2,
+                    scrub: 1.2,
+                    pin: true,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true,
+                },
+            });
+
+            scene
+                // Focus pull: the framed image grows to fill the screen and comes into sharp focus.
+                .fromTo('#frame',
+                    { scale: 0.62, filter: `blur(${blurStart}px) brightness(0.45)` },
+                    { scale: 1, filter: 'blur(0px) brightness(0.85)', duration: 1, ease: 'power2.inOut' }, 0)
+                .fromTo('#fabric-img', { scale: 1.18 }, { scale: 1, duration: 1, ease: 'power2.inOut' }, 0)
+
+                // First words arrive as the image reaches focus.
+                .to('[data-beat="1"]', { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, 0.85)
+                .to('[data-beat="1"] [data-beat-stitch]', { scaleX: 1, duration: 0.5, ease: 'power2.inOut' }, 0.95)
+                .to('[data-beat="1"]', { opacity: 0, y: -28, duration: 0.35, ease: 'power2.in' }, 2.05)
+
+                // Second words, with a slow push into the fabric for depth.
+                .to('#fabric-img', { scale: 1.06, duration: 2.6 }, 1.2)
+                .to('[data-beat="2"]', { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }, 2.4)
+                .to('[data-beat="2"] [data-beat-stitch]', { scaleX: 1, duration: 0.5, ease: 'power2.inOut' }, 2.5)
+
+                // Hand-over: the fabric panel slides up and away, uncovering the next section, which settles in.
+                .to('#fabric', { yPercent: -100, duration: 1.2, ease: 'power3.inOut' }, 3.8)
+                .fromTo('#reveal', { scale: 0.92, opacity: 0.35 }, { scale: 1, opacity: 1, duration: 1.2, ease: 'power3.out' }, 3.8);
+
+            // The fabric image may load after layout; recalculate positions once it has.
+            document.getElementById('fabric-img').addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+
+            return () => {
+                gsap.ticker.remove(raf);
+                lenis.destroy();
+            };
+        });
+
+        // ---- Reduced motion: no smooth scrolling, no pinning, everything visible and still ---
+        mm.add('(prefers-reduced-motion: reduce)', () => {
+            gsap.set('[data-beat]', { opacity: 1, y: 0, position: 'relative' });
+            gsap.set('[data-beat-stitch]', { scaleX: 1 });
+            gsap.set('[data-beat="2"]', { marginTop: '2.5rem' });
+            // Stack the two layers instead of overlapping them: the photo with its words, then the next section.
+            gsap.set('#scene', { height: 'auto', overflow: 'visible' });
+            gsap.set('#fabric', { position: 'relative', minHeight: '100svh' });
+            gsap.set('#frame', { filter: 'brightness(0.7)' });
+            gsap.set('#reveal', { position: 'relative', paddingTop: '6rem', paddingBottom: '6rem' });
+            gsap.set('[data-beat="1"]', { position: 'relative' });
+        });
+    </script>
+</body>
+</html>
